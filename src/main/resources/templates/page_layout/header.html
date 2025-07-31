@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header class="masthead mb-auto" th:fragment="header">
+    <div class="inner">
+        <h3 class="masthead-brand">Property Rental</h3> <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link" href="/" data-path="/" >Home</a>
+        <a class="nav-link" href="/properties" data-path="/properties">Διαθέσιμα Ακίνητα</a> <a sec:authorize="hasRole('OWNER')" class="nav-link" href="/properties/new" data-path="/properties/new">Καταχώρηση Ακινήτου</a> <a sec:authorize="hasRole('OWNER')" class="nav-link" href="/properties/my" data-path="/properties/my">Τα Ακίνητά μου</a> <a sec:authorize="hasRole('OWNER')" class="nav-link" href="/owner/applications" data-path="/owner/applications">Αιτήσεις Ακινήτων μου</a> <a sec:authorize="hasRole('TENANT')" class="nav-link" href="/tenant/my-applications" data-path="/tenant/my-applications">Οι Αιτήσεις μου</a> <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="/admin/properties" data-path="/admin/properties">Διαχείριση Ακινήτων (Admin)</a> <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="/users" data-path="/users">Διαχείριση Χρηστών (Admin)</a> <span sec:authorize="!isAuthenticated()">
+                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link" href="/register">Register</a>
+            </span>
+        <span sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <input type="submit" class="btn btn-primary nav-link" value="Sign Out"/>
+                </form>
+            </span>
+    </nav>
+    </div>
+</header>
+</body>
+</html>

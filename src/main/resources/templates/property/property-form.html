@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{page_layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Καταχώρηση Ακινήτου</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <h1>Καταχώρηση Νέου Ακινήτου</h1>
+
+    <form action="#" th:action="@{/properties/new}" th:object="${property}" method="post">
+
+        <div class="form-group">
+            <label for="title">Τίτλος</label>
+            <input type="text" id="title" class="form-control" th:field="*{title}">
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Περιγραφή</label>
+            <textarea id="description" class="form-control" th:field="*{description}" rows="3"></textarea>
+            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Διεύθυνση</label>
+            <input type="text" id="address" class="form-control" th:field="*{address}">
+            <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="propertyType">Τύπος Ακινήτου</label>
+            <select id="propertyType" name="propertyType" class="form-control" th:field="*{propertyType}">
+                <option value="">Επιλέξτε Τύπο</option>
+                <option th:each="type : ${propertyTypes}"
+                        th:value="${type}"
+                        th:text="${type}"></option>
+            </select>
+            <span th:if="${#fields.hasErrors('propertyType')}" th:errors="*{propertyType}" class="error text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="bedrooms">Υπνοδωμάτια</label>
+            <input type="number" id="bedrooms" class="form-control" th:field="*{bedrooms}">
+            <span th:if="${#fields.hasErrors('bedrooms')}" th:errors="*{bedrooms}" class="error text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="bathrooms">Μπάνια</label>
+            <input type="number" id="bathrooms" class="form-control" th:field="*{bathrooms}">
+            <span th:if="${#fields.hasErrors('bathrooms')}" th:errors="*{bathrooms}" class="error text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="squareMeters">Τετραγωνικά Μέτρα</label>
+            <input type="number" id="squareMeters" class="form-control" th:field="*{squareMeters}">
+            <span th:if="${#fields.hasErrors('squareMeters')}" th:errors="*{squareMeters}" class="error text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="rentAmount">Ποσό Ενοικίου (€)</label>
+            <input type="number" id="rentAmount" class="form-control" th:field="*{rentAmount}" step="0.01">
+            <span th:if="${#fields.hasErrors('rentAmount')}" th:errors="*{rentAmount}" class="error text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="availabilityDate">Ημερομηνία Διαθεσιμότητας</label>
+            <input type="date" id="availabilityDate" class="form-control" th:field="*{availabilityDate}">
+            <span th:if="${#fields.hasErrors('availabilityDate')}" th:errors="*{availabilityDate}" class="error text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Υποβολή Καταχώρησης</button>
+    </form>
+</div>
+</body>
+</html>

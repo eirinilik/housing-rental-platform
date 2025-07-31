@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      layout:decorate="~{page_layout/layout}">
+
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${property.title}"></title>
+</head>
+<body>
+<div layout:fragment="main-content">
+  <h1 th:text="${property.title}"></h1>
+
+  <div th:if="${property}">
+    <div class="card text-white bg-dark mb-3">
+      <div class="card-header">
+        <h2>Λεπτομέρειες Ακινήτου</h2>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><strong>Τίτλος:</strong> <span th:text="${property.title}"></span></p>
+        <p class="card-text"><strong>Περιγραφή:</strong> <span th:text="${property.description}"></span></p>
+        <p class="card-text"><strong>Διεύθυνση:</strong> <span th:text="${property.address}"></span></p>
+        <p class="card-text"><strong>Τύπος:</strong> <span th:text="${property.propertyType}"></span></p>
+        <p class="card-text"><strong>Υπνοδωμάτια:</strong> <span th:text="${property.bedrooms}"></span></p>
+        <p class="card-text"><strong>Μπάνια:</strong> <span th:text="${property.bathrooms}"></span></p>
+        <p class="card-text"><strong>Τετραγωνικά Μέτρα:</strong> <span th:text="${property.squareMeters}"></span></p>
+        <p class="card-text"><strong>Ποσό Ενοικίου:</strong> <span th:text="${property.rentAmount} + '€'"></span></p>
+        <p class="card-text"><strong>Διαθέσιμο από:</strong> <span th:text="${property.availabilityDate}"></span></p>
+        <p class="card-text">
+          <strong>Ιδιοκτήτης:</strong>
+          <span th:if="${property.owner != null}" th:text="${property.owner.username}"></span>
+          <span th:unless="${property.owner != null}">Άγνωστος</span>
+        </p>
+        <p class="card-text">
+          <strong>Κατάσταση Έγκρισης:</strong>
+          <span th:if="${property.isApproved}" class="badge badge-success">Εγκεκριμένο</span>
+          <span th:unless="${property.isApproved}" class="badge badge-warning">Αναμένει Έγκριση</span>
+        </p>
+      </div>
+      <div class="card-footer">
+        <a sec:authorize="hasRole('TENANT')" class="btn btn-success" th:href="@{'/properties/' + ${property.id} + '/apply'}">Υποβολή Αίτησης</a>
+        <a class="btn btn-secondary" href="/properties">Πίσω στα Ακίνητα</a>
+      </div>
+    </div>
+  </div>
+  <div th:if="${property == null}">
+    <p>Το ακίνητο δεν βρέθηκε.</p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{page_layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Διαθέσιμα Ακίνητα</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <h1>Διαθέσιμα Ακίνητα</h1>
+
+    <div th:if="${ not #lists.isEmpty(properties)}">
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+                <th>Τίτλος</th>
+                <th>Διεύθυνση</th>
+                <th>Τύπος</th>
+                <th>Υ/Δ</th>
+                <th>Μπάνια</th>
+                <th>τ.μ.</th>
+                <th>Ενοίκιο</th>
+                <th>Διαθέσιμο από</th>
+                <th>Ενέργειες</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="property : ${properties}">
+                <td th:text="${property.title}"></td>
+                <td th:text="${property.address}"></td>
+                <td th:text="${property.propertyType}"></td>
+                <td th:text="${property.bedrooms}"></td>
+                <td th:text="${property.bathrooms}"></td>
+                <td th:text="${property.squareMeters}"></td>
+                <td th:text="${property.rentAmount} + '€'"></td>
+                <td th:text="${property.availabilityDate}"></td>
+                <td>
+                    <a class="btn btn-outline-info btn-sm" th:href="@{'/properties/' + ${property.id}}">Λεπτομέρειες</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${ #lists.isEmpty(properties)}">
+        <p>Δεν βρέθηκαν διαθέσιμα ακίνητα αυτή τη στιγμή.</p>
+    </div>
+
+</div>
+</body>
+</html>
