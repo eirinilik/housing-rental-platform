@@ -3,7 +3,7 @@
 ## Clone project
 
 ```bash
-git clone https://github.com/tsadimasteaching/ds-lab-2023.git
+git clone https://github.com/eirinilik/housing-rental-platform.git
 ```
 ## Database
 * you can create a free postgres database on [https://render.com/](https://render.com/)
