@@ -12,6 +12,40 @@
 <div layout:fragment="main-content">
     <h1>Διαθέσιμα Ακίνητα</h1>
 
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/properties" method="get">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="address">Διεύθυνση</label>
+                        <input type="text" class="form-control" id="address" name="address" th:value="${address}">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="propertyType">Τύπος Ακινήτου</label>
+                        <select id="propertyType" name="propertyType" class="form-control">
+                            <option value="">Όλοι οι Τύποι</option>
+                            <option th:each="type : ${propertyTypes}"
+                                    th:value="${type}"
+                                    th:text="${type}"
+                                    th:selected="${type.toString() == propertyType}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="minRent">Ελάχιστο Ενοίκιο</label>
+                        <input type="number" class="form-control" id="minRent" name="minRent" th:value="${minRent}">
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="maxRent">Μέγιστο Ενοίκιο</label>
+                        <input type="number" class="form-control" id="maxRent" name="maxRent" th:value="${maxRent}">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Αναζήτηση</button>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
     <div th:if="${ not #lists.isEmpty(properties)}">
         <table class="table table-hover table-dark">
             <thead>

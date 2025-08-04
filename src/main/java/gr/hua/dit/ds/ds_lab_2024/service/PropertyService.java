@@ -1,20 +1,30 @@
 package gr.hua.dit.ds.ds_lab_2024.service;
 
 import gr.hua.dit.ds.ds_lab_2024.entities.Property;
+import gr.hua.dit.ds.ds_lab_2024.entities.PropertyType;
 import gr.hua.dit.ds.ds_lab_2024.entities.User;
 import gr.hua.dit.ds.ds_lab_2024.repositories.PropertyRepository;
-import gr.hua.dit.ds.ds_lab_2024.repositories.UserRepository; // Αν χρειαστεί για να βρούμε User objects
+import gr.hua.dit.ds.ds_lab_2024.repositories.UserRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PropertyService {
 
     private final PropertyRepository propertyRepository;
-    private final UserRepository userRepository; // Χρειάζεται για να βρούμε τον ιδιοκτήτη
+    private final UserRepository userRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public PropertyService(PropertyRepository propertyRepository, UserRepository userRepository) {
         this.propertyRepository = propertyRepository;
@@ -23,24 +33,52 @@ public class PropertyService {
 
     @Transactional
     public Property createProperty(Property property, Long ownerId) {
-        // Βρίσκουμε τον ιδιοκτήτη από το ID του
         User owner = userRepository.findById(ownerId)
                 .orElseThrow(() -> new RuntimeException("Owner not found with ID: " + ownerId));
 
         property.setOwner(owner);
-        property.setIsApproved(false); // Νέα ακίνητα απαιτούν έγκριση διαχειριστή
+        property.setIsApproved(false);
         return propertyRepository.save(property);
     }
 
+    // Η μέθοδος αναζήτησης και φιλτραρίσματος
     @Transactional
-    public List<Property> getApprovedProperties() {
-        // Επιστρέφει μόνο τα εγκεκριμένα ακίνητα για εμφάνιση στους ενοικιαστές
-        return propertyRepository.findByIsApprovedTrue();
+    public List<Property> searchApprovedProperties(String address, String propertyType, Double minRent, Double maxRent) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Property> cq = cb.createQuery(Property.class);
+        Root<Property> property = cq.from(Property.class);
+        List<Predicate> predicates = new ArrayList<>();
+
+        // 1. Φιλτράρουμε μόνο τα εγκεκριμένα ακίνητα
+        predicates.add(cb.isTrue(property.get("isApproved")));
+
+        // 2. Φιλτράρισμα βάσει διεύθυνσης
+        if (address != null && !address.isBlank()) {
+            predicates.add(cb.like(property.get("address"), "%" + address + "%"));
+        }
+
+        // 3. Φιλτράρισμα βάσει τύπου ακινήτου
+        if (propertyType != null && !propertyType.isBlank()) {
+            predicates.add(cb.equal(property.get("propertyType"), PropertyType.valueOf(propertyType)));
+        }
+
+        // 4. Φιλτράρισμα βάσει ελάχιστου ενοικίου
+        if (minRent != null) {
+            predicates.add(cb.greaterThanOrEqualTo(property.get("rentAmount"), minRent));
+        }
+
+        // 5. Φιλτράρισμα βάσει μέγιστου ενοικίου
+        if (maxRent != null) {
+            predicates.add(cb.lessThanOrEqualTo(property.get("rentAmount"), maxRent));
+        }
+
+        cq.where(predicates.toArray(new Predicate[0]));
+
+        return entityManager.createQuery(cq).getResultList();
     }
 
     @Transactional
     public List<Property> getAllProperties() {
-        // Επιστρέφει όλα τα ακίνητα (εγκεκριμένα και μη) - πιθανόν για διαχειριστή
         return propertyRepository.findAll();
     }
 
@@ -66,7 +104,6 @@ public class PropertyService {
 
     @Transactional
     public void deleteProperty(Integer propertyId) {
-        // Ελέγχουμε αν υπάρχει το ακίνητο πριν το διαγράψουμε
         if (!propertyRepository.existsById(propertyId)) {
             throw new RuntimeException("Property not found with ID: " + propertyId);
         }
