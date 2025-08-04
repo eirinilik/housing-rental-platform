@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{page_layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Υποβολή Αίτησης για ' + ${property.title}"></title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <h1 th:text="'Υποβολή Αίτησης για ' + ${property.title}"></h1>
+    <p th:text="'Ιδιοκτήτης: ' + ${property.owner.username}"></p>
+
+    <form action="#" th:action="@{/properties/{id}/apply(id=${property.id})}" th:object="${rentalApplication}" method="post">
+
+        <div class="form-group">
+            <label for="message">Μήνυμα προς τον Ιδιοκτήτη</label>
+            <textarea id="message" class="form-control" th:field="*{message}" rows="5"></textarea>
+            <span th:if="${#fields.hasErrors('message')}" th:errors="*{message}" class="error text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Υποβολή Αίτησης</button>
+        <a class="btn btn-secondary" th:href="@{'/properties/' + ${property.id}}">Ακύρωση</a>
+    </form>
+</div>
+</body>
+</html>

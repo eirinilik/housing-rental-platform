@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{page_layout/layout}">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Αιτήσεις Ακινήτων μου</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+  <h1>Αιτήσεις για τα Ακίνητά μου</h1>
+
+  <div th:if="${ not #lists.isEmpty(applications)}">
+    <table class="table table-hover table-dark">
+      <thead>
+      <tr>
+        <th>ID Αίτησης</th>
+        <th>Τίτλος Ακινήτου</th>
+        <th>Ενοικιαστής</th>
+        <th>Ημερομηνία Αίτησης</th>
+        <th>Μήνυμα</th>
+        <th>Κατάσταση</th>
+        <th>Ενέργειες</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="app : ${applications}"> <td th:text="${app.id}"></td>
+        <td><a th:href="@{'/properties/' + ${app.property.id}}" th:text="${app.property.title}"></a></td>
+        <td th:text="${app.tenant.username}"></td>
+        <td th:text="${app.applicationDate}"></td>
+        <td th:text="${app.message}"></td>
+        <td>
+          <span th:if="${app.status.name() == 'PENDING'}" class="badge badge-warning" th:text="${app.status}"></span>
+          <span th:if="${app.status.name() == 'APPROVED'}" class="badge badge-success" th:text="${app.status}"></span>
+          <span th:if="${app.status.name() == 'REJECTED'}" class="badge badge-danger" th:text="${app.status}"></span>
+        </td>
+        <td>
+                    <span th:if="${app.status.name() == 'PENDING'}">
+                        <form th:action="@{/applications/{id}/approve(id=${app.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-outline-success btn-sm">Έγκριση</button>
+                        </form>
+                        <form th:action="@{/applications/{id}/reject(id=${app.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Απόρριψη</button>
+                        </form>
+                    </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div th:if="${ #lists.isEmpty(applications)}">
+    <p>Δεν βρέθηκαν αιτήσεις για τα ακίνητά σας.</p>
+  </div>
+</div>
+</body>
+</html>
