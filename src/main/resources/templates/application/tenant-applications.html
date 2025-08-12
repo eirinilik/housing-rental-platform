@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{page_layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Οι Αιτήσεις μου</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <h1>Οι Αιτήσεις μου</h1>
+
+    <div th:if="${ not #lists.isEmpty(applications)}">
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+                <th>ID Αίτησης</th>
+                <th>Ακίνητο</th>
+                <th>Ιδιοκτήτης</th>
+                <th>Ημερομηνία Αίτησης</th>
+                <th>Κατάσταση</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="app : ${applications}">
+                <td th:text="${app.id}"></td>
+                <td><a th:href="@{'/properties/' + ${app.property.id}}" th:text="${app.property.title}"></a></td>
+                <td th:text="${app.property.owner.username}"></td>
+                <td th:text="${app.applicationDate}"></td>
+                <td>
+                    <span th:if="${app.status.name() == 'PENDING'}" class="badge badge-warning" th:text="${app.status}"></span>
+                    <span th:if="${app.status.name() == 'APPROVED'}" class="badge badge-success" th:text="${app.status}"></span>
+                    <span th:if="${app.status.name() == 'REJECTED'}" class="badge badge-danger" th:text="${app.status}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${ #lists.isEmpty(applications)}">
+        <p>Δεν έχετε υποβάλει καμία αίτηση ενοικίασης ακόμα.</p>
+        <a href="/properties" class="btn btn-primary">Προβολή Διαθέσιμων Ακινήτων</a>
+    </div>
+
+</div>
+</body>
+</html>

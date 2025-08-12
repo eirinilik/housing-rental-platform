@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-@RequestMapping("/") // Το βασικό path για την αρχική σελίδα και properties
+@RequestMapping("/")
 public class PropertyController {
 
     private final PropertyService propertyService;
@@ -31,12 +30,26 @@ public class PropertyController {
         this.userService = userService;
     }
 
-    // GET /properties: Εμφάνιση όλων των εγκεκριμένων ακινήτων (για ενοικιαστές/επισκέπτες)
+    // GET /properties: Εμφάνιση όλων των εγκεκριμένων ακινήτων (με φίλτρα)
     @GetMapping("/properties")
-    public String listApprovedProperties(Model model) {
-        List<Property> properties = propertyService.getApprovedProperties();
+    public String listApprovedProperties(
+            @RequestParam(required = false) String address,
+            @RequestParam(required = false) String propertyType,
+            @RequestParam(required = false) Double minRent,
+            @RequestParam(required = false) Double maxRent,
+            Model model) {
+
+        // ΚΑΛΟΥΜΕ τη νέα μέθοδο αναζήτησης
+        List<Property> properties = propertyService.searchApprovedProperties(address, propertyType, minRent, maxRent);
+
         model.addAttribute("properties", properties);
-        return "property/properties"; // Θα δημιουργήσουμε αυτό το template
+        model.addAttribute("address", address);
+        model.addAttribute("propertyType", propertyType);
+        model.addAttribute("minRent", minRent);
+        model.addAttribute("maxRent", maxRent);
+        model.addAttribute("propertyTypes", PropertyType.values());
+
+        return "property/properties";
     }
 
     // GET /properties/{id}: Λεπτομέρειες ακινήτου
@@ -45,19 +58,19 @@ public class PropertyController {
         try {
             Property property = propertyService.getPropertyDetails(id);
             model.addAttribute("property", property);
-            return "property/property-details"; // Θα δημιουργήσουμε αυτό το template
+            return "property/property-details";
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Property not found", e);
         }
     }
 
     // GET /properties/new (ROLE_OWNER): Φόρμα για νέα καταχώρηση ακινήτου
-    @Secured("ROLE_OWNER") // Μόνο ο ιδιοκτήτης μπορεί να καταχωρήσει
+    @Secured("ROLE_OWNER")
     @GetMapping("/properties/new")
     public String showPropertyForm(Model model) {
         model.addAttribute("property", new Property());
-        model.addAttribute("propertyTypes", PropertyType.values()); // Για το dropdown των τύπων ακινήτων
-        return "property/property-form"; // Θα δημιουργήσουμε αυτό το template
+        model.addAttribute("propertyTypes", PropertyType.values());
+        return "property/property-form";
     }
 
     // POST /properties/new (ROLE_OWNER): Υποβολή νέας καταχώρησης
@@ -65,20 +78,19 @@ public class PropertyController {
     @PostMapping("/properties/new")
     public String saveProperty(@Valid @ModelAttribute("property") Property property,
                                BindingResult bindingResult,
-                               Authentication authentication, // Για να πάρουμε τον συνδεδεμένο χρήστη
+                               Authentication authentication,
                                Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("propertyTypes", PropertyType.values());
             return "property/property-form";
         }
 
-        // Λαμβάνουμε το username του συνδεδεμένου χρήστη
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        User currentUser = userService.getUserByUsername(userDetails.getUsername()); // Θα προσθέσουμε αυτή τη μέθοδο στο UserService
+        User currentUser = userService.getUserByUsername(userDetails.getUsername());
 
-        propertyService.createProperty(property, currentUser.getId()); // Δημιουργία ακινήτου με τον ιδιοκτήτη
+        propertyService.createProperty(property, currentUser.getId());
         model.addAttribute("successMessage", "Το ακίνητο καταχωρήθηκε επιτυχώς! Αναμένει έγκριση διαχειριστή.");
-        return "redirect:/properties/my"; // Ανακατεύθυνση στη λίστα ακινήτων του ιδιοκτήτη
+        return "redirect:/properties/my";
     }
 
     // GET /properties/my (ROLE_OWNER): Λίστα ακινήτων του συνδεδεμένου ιδιοκτήτη
@@ -90,7 +102,7 @@ public class PropertyController {
 
         List<Property> myProperties = propertyService.getPropertiesForOwner(currentUser.getId());
         model.addAttribute("properties", myProperties);
-        return "property/my-properties"; // Θα δημιουργήσουμε αυτό το template
+        return "property/my-properties";
     }
 
 
@@ -100,7 +112,7 @@ public class PropertyController {
     public String listAllProperties(Model model) {
         List<Property> properties = propertyService.getAllProperties();
         model.addAttribute("properties", properties);
-        return "admin/properties"; // Θα δημιουργήσουμε αυτό το template
+        return "admin/properties";
     }
 
     // POST /admin/properties/{id}/approve (ROLE_ADMIN): Έγκριση ακινήτου
@@ -117,11 +129,10 @@ public class PropertyController {
     }
 
     // POST /properties/{id}/delete (ROLE_ADMIN/OWNER): Διαγραφή ακινήτου
-    @Secured({"ROLE_ADMIN", "ROLE_OWNER"}) // Διαχειριστής ή ο ίδιος ο ιδιοκτήτης μπορεί να διαγράψει
+    @Secured({"ROLE_ADMIN", "ROLE_OWNER"})
     @PostMapping("/properties/{id}/delete")
     public String deleteProperty(@PathVariable Integer id, Authentication authentication, Model model) {
         try {
-            // Ελέγχουμε αν ο χρήστης είναι Admin ή ο ιδιοκτήτης του ακινήτου
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             User currentUser = userService.getUserByUsername(userDetails.getUsername());
             Property propertyToDelete = propertyService.getPropertyDetails(id);
@@ -135,12 +146,10 @@ public class PropertyController {
                 model.addAttribute("successMessage", "Το ακίνητο διαγράφηκε επιτυχώς.");
             } else {
                 model.addAttribute("errorMessage", "Δεν έχετε δικαίωμα να διαγράψετε αυτό το ακίνητο.");
-                // Προαιρετικά, μπορείτε να πετάξετε ResponseStatusException(HttpStatus.FORBIDDEN)
             }
         } catch (RuntimeException e) {
             model.addAttribute("errorMessage", "Σφάλμα κατά τη διαγραφή ακινήτου: " + e.getMessage());
         }
-        // Ανακατεύθυνση ανάλογα με τον ρόλο μετά τη διαγραφή
         if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
             return "redirect:/admin/properties";
         } else {

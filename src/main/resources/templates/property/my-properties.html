@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      layout:decorate="~{page_layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Τα Ακίνητά μου</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <h1>Τα Ακίνητά μου</h1>
+
+    <div th:if="${ not #lists.isEmpty(properties)}">
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Τίτλος</th>
+                <th>Διεύθυνση</th>
+                <th>Τύπος</th>
+                <th>Κατάσταση</th>
+                <th>Ενέργειες</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="property : ${properties}">
+                <td th:text="${property.id}"></td>
+                <td th:text="${property.title}"></td>
+                <td th:text="${property.address}"></td>
+                <td th:text="${property.propertyType}"></td>
+                <td>
+                    <span th:if="${property.isApproved}" class="badge badge-success">Εγκεκριμένο</span>
+                    <span th:unless="${property.isApproved}" class="badge badge-warning">Αναμένει Έγκριση</span>
+                </td>
+                <td>
+                    <a class="btn btn-outline-info btn-sm" th:href="@{'/properties/' + ${property.id}}">Λεπτομέρειες</a>
+
+                    <form th:action="@{/properties/{id}/delete(id=${property.id})}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Διαγραφή</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${ #lists.isEmpty(properties)}">
+        <p>Δεν έχετε καταχωρήσει κανένα ακίνητο ακόμα.</p>
+    </div>
+    <a sec:authorize="hasRole('OWNER')" href="/properties/new" class="btn btn-primary" role="button">Καταχώρηση νέου Ακινήτου</a>
+</div>
+</body>
+</html>

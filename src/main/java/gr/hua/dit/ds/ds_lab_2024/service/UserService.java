@@ -47,6 +47,44 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
+    public void approveRequestedRole(Long userId, String roleName) {
+        User user = (User) userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found!"));
+
+        // Αφαιρούμε τον παλιό ρόλο (ROLE_USER)
+        user.getRoles().clear();
+
+        // Προσθέτουμε τον νέο ρόλο
+        Role newRole = roleRepository.findByName(roleName)
+                .orElseThrow(() -> new RuntimeException("Role not found!"));
+        user.getRoles().add(newRole);
+
+        // Καθαρίζουμε το requestedRole πεδίο
+        user.setRequestedRole(null);
+
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public Long saveUserWithRequestedRole(User user, String requestedRoleName) {
+        String passwd= user.getPassword();
+        String encodedPassword = passwordEncoder.encode(passwd);
+        user.setPassword(encodedPassword);
+
+        // Αρχικά, ορίζουμε τον χρήστη ως ROLE_USER
+        Role defaultRole = roleRepository.findByName("ROLE_USER")
+                .orElseThrow(() -> new RuntimeException("Error: ROLE_USER is not found."));
+        Set<Role> roles = new HashSet<>();
+        roles.add(defaultRole);
+        user.setRoles(roles);
+
+        // Αποθηκεύουμε τον ρόλο που ζήτησε ο χρήστης
+        user.setRequestedRole(requestedRoleName);
+
+        user = userRepository.save(user);
+        return user.getId();
+    }
+    @Transactional
     public Long updateUser(User user) {
         user = userRepository.save(user);
         return user.getId();
