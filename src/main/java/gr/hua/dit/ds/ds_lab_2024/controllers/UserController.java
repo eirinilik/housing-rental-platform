@@ -4,12 +4,10 @@ import gr.hua.dit.ds.ds_lab_2024.entities.Role;
 import gr.hua.dit.ds.ds_lab_2024.entities.User;
 import gr.hua.dit.ds.ds_lab_2024.repositories.RoleRepository;
 import gr.hua.dit.ds.ds_lab_2024.service.UserService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -29,12 +27,23 @@ public class UserController {
         model.addAttribute("user", user);
         return "auth/register";
     }
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/user/approve-role/{id}")
+    public String approveRequestedRole(@PathVariable Long id, @RequestParam("requestedRole") String roleName, Model model){
+        userService.approveRequestedRole(id, roleName); // Νέα μέθοδος στο service
+        model.addAttribute("users", userService.getUsers());
+        model.addAttribute("roles", roleRepository.findAll());
+        model.addAttribute("successMessage", "Ο ρόλος του χρήστη εγκρίθηκε επιτυχώς!");
+        return "redirect:/users";
+    }
 
     @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute User user, Model model){
-        System.out.println("Roles: "+user.getRoles());
-        Long id = userService.saveUser(user); // Αλλαγή από Integer σε Long
-        String message = "User '"+id+"' saved successfully !";
+    public String saveUser(@ModelAttribute User user, @RequestParam("role") String roleName, Model model){
+        // Προσθέστε αυτή τη γραμμή για να δείτε τι τιμή λαμβάνει ο controller
+        System.out.println("Επιλεγμένος ρόλος από τη φόρμα: " + roleName);
+
+        Long id = userService.saveUserWithRequestedRole(user, roleName);
+        String message = "User '"+id+"' saved successfully! The requested role '" + roleName + "' awaits admin approval.";
         model.addAttribute("msg", message);
         return "index";
     }

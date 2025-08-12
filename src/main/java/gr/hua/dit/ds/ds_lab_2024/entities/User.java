@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 @Entity
 @Table(	name = "users",
         uniqueConstraints = {
@@ -19,7 +18,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Αλλαγή από Integer σε Long
+    private Long id;
 
     @NotBlank
     @Size(max = 20)
@@ -34,6 +33,9 @@ public class User {
     @Size(max = 120)
     private String password;
 
+    @Column(name = "requested_role") // Σωστή δήλωση του πεδίου
+    private String requestedRole;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -46,8 +48,6 @@ public class User {
     @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RentalApplication> rentalApplications;
 
-
-    // Constructors
     public User() {
     }
 
@@ -57,12 +57,11 @@ public class User {
         this.password = password;
     }
 
-    // Getters and Setters
-    public Long getId() { // Αλλαγή από Integer σε Long
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id) { // Αλλαγή από Integer σε Long
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -88,6 +87,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRequestedRole() {
+        return requestedRole;
+    }
+
+    public void setRequestedRole(String requestedRole) {
+        this.requestedRole = requestedRole;
     }
 
     public Set<Role> getRoles() {
