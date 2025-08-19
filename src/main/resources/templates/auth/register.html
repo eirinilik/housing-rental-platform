@@ -16,9 +16,9 @@
     <h3>User Registration</h3>
     <form th:action="@{/saveUser}" method="post" th:object="${user}">
         <div class="form-group row">
-            <label for="name"> User Name</label>
+            <label for="username"> User Name</label>
 
-                <input type="text" class="form-control" th:field="*{username}" id="username"/>
+            <input type="text" class="form-control" th:field="*{username}" id="username"/>
 
         </div>
         <div class="form-group row">
@@ -28,6 +28,14 @@
         <div class="form-group row">
             <label for="password"> Password </label>
             <input type="password" class="form-control"  id="password" th:field="*{password}"/>
+        </div>
+
+        <div class="form-group row">
+            <label for="role"> Είδος Χρήστη </label>
+            <select name="role" id="role" class="form-control">
+                <option value="ROLE_TENANT">Ενοικιαστής</option>
+                <option value="ROLE_OWNER">Ιδιοκτήτης</option>
+            </select>
         </div>
         <div><input type="submit" class="btn btn-primary" value="Sign Up"/></div>
     </form>

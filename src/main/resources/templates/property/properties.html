@@ -12,15 +12,15 @@
 <div layout:fragment="main-content">
     <h1>Διαθέσιμα Ακίνητα</h1>
 
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-md-12">
             <form action="/properties" method="get">
                 <div class="form-row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3">
                         <label for="address">Διεύθυνση</label>
                         <input type="text" class="form-control" id="address" name="address" th:value="${address}">
                     </div>
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-3">
                         <label for="propertyType">Τύπος Ακινήτου</label>
                         <select id="propertyType" name="propertyType" class="form-control">
                             <option value="">Όλοι οι Τύποι</option>
@@ -30,16 +30,18 @@
                                     th:selected="${type.toString() == propertyType}"></option>
                         </select>
                     </div>
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-2">
                         <label for="minRent">Ελάχιστο Ενοίκιο</label>
                         <input type="number" class="form-control" id="minRent" name="minRent" th:value="${minRent}">
                     </div>
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-2">
                         <label for="maxRent">Μέγιστο Ενοίκιο</label>
                         <input type="number" class="form-control" id="maxRent" name="maxRent" th:value="${maxRent}">
                     </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary btn-block">Αναζήτηση</button>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Αναζήτηση</button>
             </form>
         </div>
     </div>
@@ -47,41 +49,29 @@
     <hr>
 
     <div th:if="${ not #lists.isEmpty(properties)}">
-        <table class="table table-hover table-dark">
-            <thead>
-            <tr>
-                <th>Τίτλος</th>
-                <th>Διεύθυνση</th>
-                <th>Τύπος</th>
-                <th>Υ/Δ</th>
-                <th>Μπάνια</th>
-                <th>τ.μ.</th>
-                <th>Ενοίκιο</th>
-                <th>Διαθέσιμο από</th>
-                <th>Ενέργειες</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="property : ${properties}">
-                <td th:text="${property.title}"></td>
-                <td th:text="${property.address}"></td>
-                <td th:text="${property.propertyType}"></td>
-                <td th:text="${property.bedrooms}"></td>
-                <td th:text="${property.bathrooms}"></td>
-                <td th:text="${property.squareMeters}"></td>
-                <td th:text="${property.rentAmount} + '€'"></td>
-                <td th:text="${property.availabilityDate}"></td>
-                <td>
-                    <a class="btn btn-outline-info btn-sm" th:href="@{'/properties/' + ${property.id}}">Λεπτομέρειες</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4" th:each="property : ${properties}">
+                <div class="card h-100 bg-light text-dark">
+                    <img class="card-img-top" th:src="@{/images/placeholder.png}" alt="Placeholder image">
+                    <div class="card-body">
+                        <h4 class="card-title" th:text="${property.title}">Τίτλος Ακινήτου</h4>
+                        <h5 class="card-subtitle mb-2 text-muted" th:text="${property.address}">Διεύθυνση</h5>
+                        <p class="card-text">
+                            <strong>Τύπος:</strong> <span th:text="${property.propertyType}"></span><br>
+                            <strong>Ενοίκιο:</strong> <span th:text="${property.rentAmount} + '€'"></span><br>
+                            <strong>Υπνοδωμάτια:</strong> <span th:text="${property.bedrooms}"></span>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a th:href="@{'/properties/' + ${property.id}}" class="btn btn-primary">Λεπτομέρειες</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div th:if="${ #lists.isEmpty(properties)}">
         <p>Δεν βρέθηκαν διαθέσιμα ακίνητα αυτή τη στιγμή.</p>
     </div>
-
 </div>
 </body>
 </html>
