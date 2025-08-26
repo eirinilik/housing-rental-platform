@@ -32,7 +32,7 @@ Technologies
 Setup Instructions
 
     Clone the project:
-    Bash
+    
 
 git clone https://github.com/eirinilik/housing-rental-platform.git
 
