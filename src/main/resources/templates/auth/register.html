@@ -3,45 +3,59 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{page_layout/layout}">
-
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>User Registration</title>
 </head>
 <body>
-<div layout:fragment="main-content">
-    <div th:if="${param.error}">
-        Invalid username and password.
+<div layout:fragment="main-content" class="registration-wrapper">
+
+    <div class="registration-container">
+
+        <h2>Registration</h2>
+
+        <!-- Error message -->
+        <div th:if="${param.error}" class="alert alert-coral">
+            Invalid username or password.
+        </div>
+
+        <!-- Success or info message -->
+        <div th:if="${msg}" class="alert alert-info" th:text="${msg}"></div>
+
+        <!-- Registration form -->
+        <form th:action="@{/saveUser}" th:object="${user}" method="post" class="registration-form">
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" th:field="*{username}" id="username" placeholder="Enter username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" th:field="*{email}" id="email" placeholder="Enter email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" th:field="*{password}" id="password" placeholder="Enter password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="role">User Type</label>
+                <select name="role" id="role" required>
+                    <option value="" disabled selected>Select user type</option>
+                    <option value="ROLE_TENANT">Tenant</option>
+                    <option value="ROLE_OWNER">Owner</option>
+                </select>
+            </div>
+
+            <div class="form-group text-center">
+                <button type="submit">Sign Up</button>
+                <p class="login-link">Already have an account? <a href="/login">Log In</a></p>
+            </div>
+
+        </form>
     </div>
-    <h3>User Registration</h3>
-    <form th:action="@{/saveUser}" method="post" th:object="${user}">
-        <div class="form-group row">
-            <label for="username"> User Name</label>
-
-            <input type="text" class="form-control" th:field="*{username}" id="username"/>
-
-        </div>
-        <div class="form-group row">
-            <label for="email"> Email</label>
-            <input type="text" class="form-control"  th:field="*{email}" id="email"/>
-        </div>
-        <div class="form-group row">
-            <label for="password"> Password </label>
-            <input type="password" class="form-control"  id="password" th:field="*{password}"/>
-        </div>
-
-        <div class="form-group row">
-            <label for="role"> Είδος Χρήστη </label>
-            <select name="role" id="role" class="form-control">
-                <option value="ROLE_TENANT">Ενοικιαστής</option>
-                <option value="ROLE_OWNER">Ιδιοκτήτης</option>
-            </select>
-        </div>
-        <div><input type="submit" class="btn btn-primary" value="Sign Up"/></div>
-    </form>
-    <div th:text="${msg}"></div>
-</div>
-
 </div>
 </body>
 </html>

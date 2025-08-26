@@ -10,7 +10,109 @@
 </head>
 <body>
 <div layout:fragment="main-content">
-  <h1>HELLO TO OUR RENTAL PLATFORM!</h1>
+  <section class="intro-section">
+    <h1>Welcome to Property Rental!</h1>
+    <p>
+      Whether you want to <span class="highlight-owner">rent out your property</span> or
+      <span class="highlight-renter">find your next home</span>, we’ve got you covered.
+      <span class="highlight-bold">Simple, fast</span>, and designed for
+      <span class="highlight-bold">both owners and renters</span>.
+    </p>
+  </section>
+
+  <section class="hero-section">
+    <!-- Left side: owners text -->
+    <div class="hero-text">
+      <h1> Sign Up to Start Renting Out Your Property</h1>
+      <p>
+        Have a property to rent? Join our community today! Sign up, log in, and start listing your properties in minutes.
+        Manage your listings effortlessly and connect with eager renters instantly.
+      </p>
+      <div class="hero-buttons">
+        <a href="/register" class="btn-primary">Sign Up</a>
+      </div>
+    </div>
+
+    <!-- Right side: illustrative images -->
+    <div class="hero-images">
+      <img src="/images/livingroom.jpg" alt="House 1" class="hero-img">
+      <img src="/images/bedroom.jpg" alt="House 2" class="hero-img">
+      <img src="/images/kitchen.jpg" alt="House 3" class="hero-img">
+    </div>
+  </section>
+  <section class="hero-section hero-section-renters">
+    <!-- Left side: illustrative images -->
+    <div class="hero-images">
+      <img src="/images/building2.jpg" alt="photo 1" class="hero-img">
+      <img src="/images/renter2.jpg" alt="photo 2" class="hero-img">
+    </div>
+
+    <!-- Right side: renters text -->
+    <div class="hero-text">
+      <h1> Find Your Next Home</h1>
+      <p>
+        Looking for your perfect rental? Browse available properties, filter by your preferences, and send requests to property owners quickly and easily.
+      </p>
+      <div class="hero-buttons">
+        <a href="/properties" class="btn-primary">Browse Rentals</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works – Renters -->
+  <section class="how-it-works renters-section">
+    <h2>How Renting Works: Quick, Online, and 100% Safe</h2>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Pick Your Favorites</h3>
+        <p>Browse hundreds of quality rooms, studios, and apartments. Save your favorites and get alerts for new listings.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Chat with the Landlord</h3>
+        <p>Use a secure online space to ask questions, share details, and see if the place matches your needs.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Apply to Rent</h3>
+        <p>Found the perfect home? Apply online and get a response within 48 hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Pay & Move In</h3>
+        <p>Confirm your stay by paying the first month’s rent. Your payment is protected until you’ve checked in.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works – Owners -->
+  <section class="how-it-works owners-section">
+    <h2>How Listing Works for Owners: Easy and Secure</h2>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Sign Up</h3>
+        <p>Create your account quickly to get started. It’s free and easy to join.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Add Your Property</h3>
+        <p>Provide property details, upload high-quality photos, and describe your listing to attract renters.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Manage Applications</h3>
+        <p>Receive requests from interested renters, communicate securely, and approve applications effortlessly.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Rent Out Confidently</h3>
+        <p>Finalize agreements and rent out your property with confidence. All transactions are safe and protected.</p>
+      </div>
+    </div>
+  </section>
+
 </div>
 </body>
 </html>

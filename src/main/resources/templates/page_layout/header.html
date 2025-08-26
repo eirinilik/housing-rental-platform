@@ -10,19 +10,41 @@
 <body>
 
 <header class="masthead mb-auto" th:fragment="header">
-    <div class="inner">
-        <h3 class="masthead-brand">Property Rental</h3> <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link" href="/" data-path="/" >Home</a>
-        <a class="nav-link" href="/properties" data-path="/properties">Διαθέσιμα Ακίνητα</a> <a sec:authorize="hasRole('OWNER')" class="nav-link" href="/properties/new" data-path="/properties/new">Καταχώρηση Ακινήτου</a> <a sec:authorize="hasRole('OWNER')" class="nav-link" href="/properties/my" data-path="/properties/my">Τα Ακίνητά μου</a> <a sec:authorize="hasRole('OWNER')" class="nav-link" href="/owner/applications" data-path="/owner/applications">Αιτήσεις Ακινήτων μου</a> <a sec:authorize="hasRole('TENANT')" class="nav-link" href="/tenant/my-applications" data-path="/tenant/my-applications">Οι Αιτήσεις μου</a> <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="/admin/properties" data-path="/admin/properties">Διαχείριση Ακινήτων (Admin)</a> <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="/users" data-path="/users">Διαχείριση Χρηστών (Admin)</a> <span sec:authorize="!isAuthenticated()">
-                <a class="nav-link" href="/login">Login</a>
-                <a class="nav-link" href="/register">Register</a>
+    <div class="inner d-flex justify-content-between align-items-center">
+        <h3 class="masthead-brand">
+            <img src="/images/house.png" alt="Logo" class="brand-icon">
+            Property Rental
+        </h3>
+        <nav class="nav nav-masthead d-flex justify-content-center" style="gap: 1rem;">
+            <!-- Common links -->
+            <a class="nav-link" th:href="@{/}" data-path="/">Home</a>
+            <a class="nav-link" th:href="@{/properties}" data-path="/properties">Available Properties</a>
+
+            <!-- Owner links -->
+            <a sec:authorize="hasRole('OWNER')" class="nav-link" th:href="@{/properties/new}" data-path="/properties/new">Property Listing</a>
+            <a sec:authorize="hasRole('OWNER')" class="nav-link" th:href="@{/properties/my}" data-path="/properties/my">My Rroperties</a>
+            <a sec:authorize="hasRole('OWNER')" class="nav-link" th:href="@{/owner/applications}" data-path="/owner/applications">My Property Applications</a>
+
+            <!-- Tenant links -->
+            <a sec:authorize="hasRole('TENANT')" class="nav-link" th:href="@{/tenant/my-applications}" data-path="/tenant/my-applications">My Applications</a>
+
+            <!-- Admin links -->
+            <a sec:authorize="hasRole('ADMIN')" class="nav-link" th:href="@{/admin/properties}" data-path="/admin/properties">Property Management(Admin)</a>
+            <a sec:authorize="hasRole('ADMIN')" class="nav-link" th:href="@{/users}" data-path="/users">User Management(Admin)</a>
+
+            <!-- Guest links (only show if NOT logged in) -->
+            <span sec:authorize="isAnonymous()" class="d-flex align-items-center" style="gap: 1rem;">
+                <a class="nav-link" th:href="@{/register}">Register</a>
+                <a class="nav-link" th:href="@{/login}">Login</a>
             </span>
-        <span sec:authorize="isAuthenticated()">
+
+            <!-- Authenticated user links (only show if logged in) -->
+            <span sec:authorize="isAuthenticated()">
                 <form th:action="@{/logout}" method="post" style="display: inline;">
                     <input type="submit" class="btn btn-primary nav-link" value="Sign Out"/>
                 </form>
             </span>
-    </nav>
+        </nav>
     </div>
 </header>
 </body>

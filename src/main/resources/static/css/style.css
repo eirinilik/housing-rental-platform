@@ -1,0 +1,573 @@
+/* Globals */
+a, a:focus, a:hover {
+    color: #008080; /* brand teal for all links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: #006666; /* darker teal on hover */
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #333;
+    text-shadow: none;
+    background-color: #fff;
+    border: 0.05rem solid #fff;
+}
+
+/* Base structure */
+html, body {
+    height: 100%;
+    background-color: #f8f9fa; /* light gray background */
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Hero Section */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 4rem 8%;
+    gap: 2rem;
+}
+
+.hero-text {
+    color: #1D3557;
+}
+.hero-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #444;
+}
+
+.btn-primary {
+    background: #008080;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.btn-primary:hover {
+    background: #006666;
+}
+
+.btn-accent {
+    background: #ff6b6b;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+.btn-accent:hover {
+    background: #e63946;
+}
+
+/* Header (nav bar) */
+.masthead {
+    margin-bottom: 2rem;
+}
+.masthead-brand {
+    margin-bottom: 0;
+    font-weight: bold;
+    color: #008080;
+}
+.brand-icon {
+    width: 32px;   /* adjust size as needed */
+    height: 32px;  /* maintain aspect ratio */
+    margin-right: 8px; /* space between icon and text */
+}
+.nav-masthead {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.nav-masthead .nav-link {
+    padding: .25rem 0;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: transparent;
+    border-bottom: .25rem solid transparent;
+    transition: all 0.3s ease;
+}
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+    border-bottom-color: #008080;
+    color: #008080;
+}
+.nav-masthead .active {
+    color: #008080;
+    border-bottom-color: #008080;
+}
+
+/* Footer */
+.mastfoot {
+    background-color: #ffe6e0; /* very light coral */
+    color: #ff7043; /* medium coral text */
+    font-size: 0.85rem; /* slightly smaller text */
+    text-align: center;
+    padding: 0.25rem 0; /* very thin footer */
+    margin: 0; /* no extra spacing */
+    width: 100%; /* full width */
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    border-top: 1px solid #ff7043; /* subtle coral border */
+}
+
+.mastfoot a {
+    color: #ff5722; /* bright coral links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mastfoot a:hover {
+    color: #e64a19; /* darker coral on hover */
+}
+
+.mastfoot .auth-info {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: #ff7043;
+}
+
+.footer-text {
+    margin: 0;
+}
+.mastfoot a.footer-special {
+    color: #e64a19; /* different color for Bootstrap and @mdo links */
+}
+.hero-text h1 {
+    font-size: 2rem; /* smaller heading */
+    margin-bottom: 0.8rem;
+}
+/* index.html home page   */
+/* Intro Section */
+.intro-section {
+    text-align: center;
+    padding: 2rem 2rem;
+    background-color: #f0f8f8; /* light teal background */
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.intro-section h1 {
+    font-size: 2.5rem; /* keep header large */
+    color: #008080;
+    margin-bottom: 1rem;
+}
+
+.intro-section p {
+    font-size: 1.1rem;
+    color: #444;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Emphasis for specific words */
+.highlight-owner {
+    color: #ff6b6b; /* teal for owners */
+    font-weight: bold;
+}
+
+.highlight-renter {
+    color: #ff6b6b; /* coral for renters */
+    font-weight: bold;
+}
+.highlight-bold {
+    font-weight: bold;
+    color: #008080; /* or coral, choose one consistent color */
+}
+/*next for owners*/
+/* Left side: hero text adjustments */
+.hero-text h1 {
+    font-size: 2rem; /* smaller heading */
+    margin-bottom: 0.8rem;
+}
+
+.hero-text p {
+    font-size: 1rem; /* smaller paragraph */
+    color: #444;
+    margin-bottom: 1.5rem;
+}
+
+/* Buttons spacing (optional) */
+.hero-buttons a {
+    margin-right: 0.8rem;
+    padding: 10px 20px; /* slightly smaller buttons */
+}
+/* Right side: images in a horizontal row */
+.hero-images {
+    display: flex;
+    flex-direction: row; /* horizontal alignment */
+    gap: 1rem;
+    align-items: flex-end; /* allows middle image to be slightly lower */
+}
+
+/* All images: slim, rounded corners */
+.hero-images .hero-img {
+    width: 32%; /* slim images, three fit in a row */
+    height: 300px; /* adjust height to make them slim */
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Make middle image slightly lower */
+.hero-images .hero-img:nth-child(2) {
+    transform: translateY(15px);
+}
+
+/* Responsive: stack images vertically on small screens */
+@media (max-width: 768px) {
+    .hero-images {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .hero-images .hero-img {
+        width: 80%;
+        height: auto;
+        transform: none;
+    }
+}
+
+
+/* Renters hero section: images on the left, text on the right */
+
+.hero-section-renters .hero-images {
+    display: flex;
+    flex-direction: row; /* horizontal alignment */
+    gap: 1rem;
+    align-items: flex-end; /* optional: stagger effect */
+}
+
+/* All images: slim, rounded corners */
+.hero-section-renters .hero-images .hero-img {
+    width: 48%; /* adjust width for two images */
+    height: 300px; /* slim height */
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+
+/* Optional: stagger middle image (if more than 2 images) */
+.hero-section-renters .hero-images .hero-img:nth-child(2) {
+    transform: translateY(10px);
+}
+
+/* Responsive: stack images vertically on small screens */
+@media (max-width: 768px) {
+    .hero-section-renters .hero-images {
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-section-renters .hero-images .hero-img {
+        width: 80%;
+        transform: none;
+    }
+}
+
+/*sction how it works*/
+.how-it-works {
+    text-align: center;
+    padding: 3rem 8%;
+    background-color: #f8f9fa;
+}
+
+.how-it-works h2 {
+    font-size: 2rem;
+    color: #008080;
+    margin-bottom: 2rem;
+}
+
+/* Steps container: horizontal layout */
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* Individual step */
+.step {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    flex: 1 1 22%; /* four steps horizontally, responsive */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-width: 220px; /* ensures they don’t shrink too much on small screens */
+}
+
+.step-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6b6b;
+    margin-bottom: 0.5rem;
+}
+
+.step h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #008080;
+}
+
+.step p {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.4;
+}
+
+/* Responsive: stack steps vertically on small screens */
+@media (max-width: 768px) {
+    .steps-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .step {
+        flex: 1 1 100%;
+    }
+}
+
+/*registration*/
+.alert-coral {
+    background-color: #ff6b6b; /* coral background */
+    color: black;              /* text color */
+    border: 1px solid #ff6b6b; /* border same as background */
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+}
+
+/* Wrapper centers the form and leaves space around */
+.registration-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4rem 1rem; /* space above and sides */
+    background-color: #f8f9fa; /* subtle background */
+}
+
+/* Form container */
+.registration-container {
+    width: 100%;
+    max-width: 450px; /* limit width */
+    padding: 2rem;
+    background-color: #f0f8f8;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Heading */
+.registration-container h2 {
+    text-align: center;
+    color: #008080;
+    margin-bottom: 1.5rem;
+}
+
+/* Alerts */
+.alert {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.alert-coral {
+    background-color: #ff6b6b;
+    color: white;
+    border: 1px solid #ff6b6b;
+}
+
+.alert-info {
+    background-color: #e0f7f7;
+    color: #008080;
+    border: 1px solid #008080;
+}
+
+/* Form elements */
+.registration-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.registration-form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.registration-form input,
+.registration-form select {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.registration-form input:focus,
+.registration-form select:focus {
+    border-color: #008080;
+}
+
+/* Submit button */
+.registration-form button {
+    background-color: #008080;
+    color: white;
+    padding: 0.6rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.registration-form button:hover {
+    background-color: #006666;
+}
+
+/* Login link */
+.login-link {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.login-link a {
+    color: #ff6b6b; /* coral */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.login-link a:hover {
+    color: #e64a19;
+}
+
+/*logout button*/
+.btn.btn-primary.nav-link {
+    background-color: #ff6b6b;  /* coral */
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.btn.btn-primary.nav-link:hover {
+    background-color: #e64a19; /* darker coral on hover */
+    color: white;
+}
+/*AVAILBLE PROPERTIES*/
+/* Headings */
+.heading-main {
+    color: #008080;
+}
+
+/* Filter Form */
+.filter-form {
+    background-color: #f8f9fa;
+}
+
+.filter-form label {
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #008080;
+    color: white;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #006666;
+}
+
+.btn-accent {
+    background-color: #ff6b6b;
+    color: white;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-accent:hover {
+    background-color: #e64a19;
+}
+
+/* Cards */
+.property-card {
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.property-card img {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Empty state */
+.empty-text {
+    font-size: 1.2rem;
+    color: #ff6b6b;
+}
+
+.property-image {
+    width: auto;             /* fixed width */
+    height: auto;            /* fixed height */
+    object-fit: contain;      /* fit image without stretching */
+    display: block;
+    margin: 0 auto;           /* center horizontally */
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;  /* centers the image container */
+    align-items: center;
+    padding: 1rem 0;          /* top & bottom spacing */
+    background-color: #f8f9fa; /* optional background */
+    border-radius: 5px;        /* optional rounded corners */
+}
+
+
+
+
+
+
+
+
+
+
