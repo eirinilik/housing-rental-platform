@@ -3,57 +3,62 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{page_layout/layout}">
-
 <head>
     <meta charset="UTF-8">
-    <title>Διαχείριση Ακινήτων</title>
+    <title>Property Management (Admin)</title>
 </head>
-<body>
-<div layout:fragment="main-content">
-    <h1>Διαχείριση Ακινήτων (Admin)</h1>
 
-    <div th:if="${ not #lists.isEmpty(properties)}">
-        <table class="table table-hover table-dark">
+<body>
+<div layout:fragment="main-content" class="container my-6 admin-properties-page">
+
+    <h1 class="text-center mb-4">Property Management (Admin)</h1>
+
+    <!-- Properties Table -->
+    <div th:if="${not #lists.isEmpty(properties)}" class="table-responsive">
+        <table class="table table-hover align-middle">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Τίτλος</th>
-                <th>Ιδιοκτήτης</th>
-                <th>Διεύθυνση</th>
-                <th>Κατάσταση</th>
-                <th>Ενέργειες</th>
+                <th>Title</th>
+                <th>Owner</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="property : ${properties}">
                 <td th:text="${property.id}"></td>
-                <td th:text="${property.title}"></td>
+                <td><a th:href="@{'/properties/' + ${property.id}}" th:text="${property.title}"></a></td>
                 <td th:text="${property.owner != null ? property.owner.username : 'N/A'}"></td>
                 <td th:text="${property.address}"></td>
                 <td>
-                    <span th:if="${property.isApproved}" class="badge badge-success">Εγκεκριμένο</span>
-                    <span th:unless="${property.isApproved}" class="badge badge-warning">Αναμένει Έγκριση</span>
+                    <span th:if="${property.isApproved}" class="badge bg-success">Approved</span>
+                    <span th:unless="${property.isApproved}" class="badge bg-warning text-dark">Pending</span>
                 </td>
-                <td>
-                    <a class="btn btn-outline-info btn-sm" th:href="@{'/properties/' + ${property.id}}">Λεπτομέρειες</a>
+                <td class="d-flex gap-2">
+                    <a class="btn btn-details btn-sm" th:href="@{'/properties/' + ${property.id}}">Details</a>
 
                     <span th:unless="${property.isApproved}">
-                        <form th:action="@{/admin/properties/{id}/approve(id=${property.id})}" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-outline-success btn-sm">Έγκριση</button>
+                        <form th:action="@{/admin/properties/{id}/approve(id=${property.id})}" method="post">
+                            <button type="submit" class="btn btn-approve btn-sm">Approve</button>
                         </form>
                     </span>
 
-                    <form th:action="@{/properties/{id}/delete(id=${property.id})}" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-outline-danger btn-sm">Διαγραφή</button>
+                    <form th:action="@{/properties/{id}/delete(id=${property.id})}" method="post">
+                        <button type="submit" class="btn btn-delete btn-sm">Delete</button>
                     </form>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div th:if="${ #lists.isEmpty(properties)}">
-        <p>Δεν βρέθηκαν ακίνητα.</p>
+
+    <!-- Empty state -->
+    <div th:if="${#lists.isEmpty(properties)}" class="text-center mt-4">
+        <p class="text-muted fs-5">No properties found.</p>
     </div>
+
 </div>
 </body>
 </html>

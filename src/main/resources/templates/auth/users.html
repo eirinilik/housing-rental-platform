@@ -9,10 +9,13 @@
     <title>User Management</title>
 </head>
 <body>
-<div layout:fragment="main-content">
+<div layout:fragment="main-content" class="container my-6 admin-users-page">
 
-    <div th:if="${ not #lists.isEmpty(users)}">
-        <table class="table">
+    <h1 class="text-center mb-4" style="color: #008080;">User Management</h1>
+
+    <!-- Users Table -->
+    <div th:if="${not #lists.isEmpty(users)}" class="table-responsive">
+        <table class="table table-hover align-middle">
             <thead>
             <tr>
                 <th>Username</th>
@@ -22,33 +25,45 @@
             </thead>
             <tbody>
             <tr th:each="user : ${users}">
-                <td th:text="${user.username}"></td>
+                <td><a th:href="@{/user/{id}(id=${user.id})}" class="text-decoration-none text-dark" th:text="${user.username}"></a></td>
                 <td th:text="${user.email}"></td>
                 <td>
-                    <a class="btn btn-info" th:href="@{/user/{id}(id=${user.id})}">Edit</a>
-                    <span th:each="role : ${user.roles}">
-                        <a class="btn btn-danger" th:href="@{/user/role/delete/{id}/{role_id}(id=${user.id},role_id=${role.id})}" th:utext="'Delete '+  ${role.name}"/>
-                    </span>
-                    <span th:each="role : ${roles}">
-                        <a  class="btn btn-success" th:href="@{/user/role/add/{id}/{role_id}(id=${user.id},role_id=${role.id})}" th:if="${! user.roles.contains(role)}" th:utext="'Add ' + ${role.name}"></a>
-                    </span>
+                    <div class="action-buttons">
+                        <!-- Edit button -->
+                        <a class="btn btn-details btn-sm" th:href="@{/user/{id}(id=${user.id})}">Edit</a>
 
-                    <span th:if="${user.requestedRole != null && !#strings.isEmpty(user.requestedRole)}">
-                        <br>
-                        <form th:action="@{/user/approve-role/{id}(id=${user.id})}" method="post" style="display:inline;">
+                        <!-- Delete role buttons -->
+                        <a class="btn btn-delete btn-sm" th:each="role : ${user.roles}"
+                           th:href="@{/user/role/delete/{id}/{role_id}(id=${user.id},role_id=${role.id})}"
+                           th:utext="'Delete ' + ${role.name}"></a>
+
+                        <!-- Add role buttons -->
+                        <a class="btn btn-approve btn-sm" th:each="role : ${roles}"
+                           th:href="@{/user/role/add/{id}/{role_id}(id=${user.id},role_id=${role.id})}"
+                           th:if="${!user.roles.contains(role)}"
+                           th:utext="'Add ' + ${role.name}"></a>
+
+                        <!-- Approve requested role -->
+                        <form th:if="${user.requestedRole != null && !#strings.isEmpty(user.requestedRole)}"
+                              th:action="@{/user/approve-role/{id}(id=${user.id})}" method="post" style="display:inline;">
                             <input type="hidden" name="requestedRole" th:value="${user.requestedRole}" />
-                            <button type="submit" class="btn btn-outline-success">Έγκριση Ρόλου: <span th:text="${user.requestedRole}"></span></button>
+                            <button type="submit" class="btn btn-approve btn-sm">
+                                Approve Role: <span th:text="${user.requestedRole}"></span>
+                            </button>
                         </form>
-                    </span>
+                    </div>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div th:if="${ #lists.isEmpty(users)}">
-        No Students found!
+
+    <!-- Empty state -->
+    <div th:if="${#lists.isEmpty(users)}" class="text-center mt-4">
+        <p class="text-muted fs-5">No users found.</p>
     </div>
-    <a href="/register" class="btn btn-primary" role="button">Create new User</a>
+
+    <a href="/register" class="btn btn-create-user mt-3">Create New User</a>
 
 </div>
 </body>

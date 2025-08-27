@@ -481,32 +481,33 @@ html, body {
 }
 /*AVAILBLE PROPERTIES*/
 /* Headings */
-.heading-main {
+/* Available Properties Page Scoped CSS */
+.available-properties-page .heading-main {
     color: #008080;
 }
 
 /* Filter Form */
-.filter-form {
+.available-properties-page .filter-form {
     background-color: #f8f9fa;
 }
 
-.filter-form label {
+.available-properties-page .filter-form label {
     font-weight: 600;
 }
 
 /* Buttons */
-.btn-primary {
+.available-properties-page .btn-primary {
     background-color: #008080;
     color: white;
     border-radius: 8px;
     transition: 0.3s;
 }
 
-.btn-primary:hover {
+.available-properties-page .btn-primary:hover {
     background-color: #006666;
 }
 
-.btn-accent {
+.available-properties-page .btn-accent {
     background-color: #ff6b6b;
     color: white;
     border-radius: 8px;
@@ -516,58 +517,698 @@ html, body {
     text-decoration: none;
 }
 
-.btn-accent:hover {
+.available-properties-page .btn-accent:hover {
     background-color: #e64a19;
 }
 
 /* Cards */
-.property-card {
+.available-properties-page .property-card {
     border: none;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     border-radius: 12px;
     transition: transform 0.3s ease;
 }
 
-.property-card img {
+.available-properties-page .property-card img {
     height: 200px;
     object-fit: cover;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
 }
 
-.property-card:hover {
+.available-properties-page .property-card:hover {
     transform: translateY(-5px);
 }
 
 /* Empty state */
-.empty-text {
+.available-properties-page .empty-text {
     font-size: 1.2rem;
     color: #ff6b6b;
 }
 
-.property-image {
-    width: auto;             /* fixed width */
-    height: auto;            /* fixed height */
-    object-fit: contain;      /* fit image without stretching */
+.available-properties-page .property-image {
+    width: auto;
+    height: auto;
+    object-fit: contain;
     display: block;
-    margin: 0 auto;           /* center horizontally */
+    margin: 0 auto;
 }
 
-.image-container {
+.available-properties-page .image-container {
     display: flex;
-    justify-content: center;  /* centers the image container */
+    justify-content: center;
     align-items: center;
-    padding: 1rem 0;          /* top & bottom spacing */
-    background-color: #f8f9fa; /* optional background */
-    border-radius: 5px;        /* optional rounded corners */
+    padding: 1rem 0;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+/*property-form.html*/
+.property-form-page .form-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.property-form-page .form-title {
+    color: #008080;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.property-form-page label {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    display: block;
+    color: #333;
+}
+
+.property-form-page .form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 0.6rem;
+    font-size: 1rem;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.property-form-page .form-control:focus {
+    border-color: #008080;
+    box-shadow: 0 0 4px rgba(0, 128, 128, 0.3);
+}
+
+.property-form-page .error {
+    font-size: 0.9rem;
+    color: #ff6b6b;
+    display: block;
+    margin-top: 0.2rem;
+}
+
+.property-form-page .btn-submit {
+    background-color: #ff6b6b;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.property-form-page .btn-submit:hover {
+    background-color: #e64a19;
 }
 
 
+/* My Properties Page Scoped CSS */
+
+.my-properties-page {
+    max-width: 900px;
+    background: #fdfefe;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+
+}
+
+/* Heading */
+.my-properties-page h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #008080; /* or use #138496 */
+}
+
+/* Table styling */
+.my-properties-page .custom-table {
+    background-color: #f9fbfb;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+}
+
+.my-properties-page .custom-table thead {
+    background-color: #008080; /* teal vibe */
+    color: white;
+    font-size: 0.95rem;
+}
+
+.my-properties-page .custom-table tbody tr {
+    transition: background-color 0.2s ease-in-out;
+}
+
+.my-properties-page .custom-table tbody tr:hover {
+    background-color: #eaf6f6;
+}
+
+/* Status badges */
+.my-properties-page .status-approved {
+    background-color: #20c997;
+    color: white;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.my-properties-page .status-pending {
+    background-color: #ffc107;
+    color: #212529;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+/* Buttons */
+.my-properties-page .btn-details {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.my-properties-page .btn-details:hover {
+    background-color: #138496;
+}
+
+.my-properties-page .btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.my-properties-page .btn-delete:hover {
+    background-color: #b02a37;
+}
+
+.my-properties-page .btn-add {
+    background-color: #008080;
+    color: white;
+    padding: 0.6rem 1.3rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.my-properties-page .btn-add:hover {
+    background-color: #006666;
+    color: white;
+}
 
 
+/*property-details*/
+/* Main container */
+.property-details-page {
+    background-color: #ffffff; /* white background */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    margin: 2rem auto; /* top and bottom margin */
+}
+
+/* Page title */
+.property-details-page .property-title {
+    color: #008080; /* teal */
+    font-weight: 600;
+}
+
+/* Property card */
+.property-details-page .property-card {
+    background-color: #d9f2e6; /* light green */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 1.5rem;
+}
+
+/* Table styling */
+.property-details-page table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem; /* spacing between rows */
+}
+
+.property-details-page table th {
+    width: 25%;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+    vertical-align: top;
+    padding: 0.5rem 0.75rem;
+}
+
+.property-details-page table td {
+    color: #555;
+    padding: 0.5rem 0.75rem;
+    background-color: #e6f5ec; /* very light green */
+    border-radius: 6px;
+}
+
+/* Status badges: confined to their cell */
+.property-details-page .status-approved,
+.property-details-page .status-pending {
+    display: inline-block;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.property-details-page .status-approved {
+    background-color: #20c997; /* green */
+    color: white;
+}
+
+.property-details-page .status-pending {
+    background-color: #ff6b6b; /* coral */
+    color: white;
+}
+
+/* Buttons: coral theme */
+.property-details-page .btn-apply,
+.property-details-page .btn-back {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    color: white;
+}
+
+.property-details-page .btn-apply,
+.property-details-page .btn-back {
+    background-color: #ff6b6b; /* coral */
+}
+
+.property-details-page .btn-apply:hover,
+.property-details-page .btn-back:hover {
+    background-color: #e64a19; /* darker coral */
+}
+
+/* Responsive: stack table rows on small screens */
+@media (max-width: 768px) {
+    .property-details-page table th,
+    .property-details-page table td {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+}
+
+/* Owner Application */
+/* Page container */
+.owner-application-page.container.my-6 {
+    background-color: #ffffff; /* white container */
+    padding: 2rem;
+    border-radius: 12px;       /* only container has rounded corners */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;            /* top and bottom spacing */
+}
+
+/* Page title */
+.owner-application-page h1.text-center {
+    color: #008080; /* teal color */
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* Table styling */
+/* Container styling */
+.owner-application-page.container.my-6 {
+    background-color: #ffffff; /* white container */
+    padding: 2rem;
+    border-radius: 12px;       /* rounded container */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;            /* top and bottom margin */
+}
+
+/* Page title */
+.owner-application-page h1.text-center {
+    color: #008080; /* teal color */
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* Table container rounded corners */
+.owner-application-page .table {
+    width: 100%;
+    border-collapse: separate; /* keep spacing for rounded corners */
+    border-spacing: 0;
+    border-radius: 12px;       /* round corners for table */
+    overflow: hidden;          /* ensures corners stay clipped */
+    background-color: #f8f9fa; /* table background */
+}
+
+/* Table header and cells */
+.owner-application-page .table th,
+.owner-application-page .table td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    border: none;              /* remove internal borders */
+    background-color: transparent; /* flat cells */
+    border-radius: 0;          /* no rounded corners for cells */
+}
+
+/* Table header background */
+.owner-application-page .table thead th {
+    background-color: #008080; /* teal header row */
+    color: white;
+    font-weight: 600;
+}
+
+/* Optional: hover effect for rows */
+.owner-application-page .table tbody tr:hover {
+    background-color: #e6f5ec;
+}
+
+/* Links inside table */
+.owner-application-page .table td a {
+    color: coral;           /* coral links */
+    text-decoration: none;
+}
+
+.owner-application-page .table td a:hover {
+    text-decoration: underline;
+}
+
+/* Badges */
+.owner-application-page .badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.owner-application-page .badge.bg-success {
+    background-color: #20c997 !important;
+    color: white !important;
+}
+
+.owner-application-page .badge.bg-danger {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+/* Buttons */
+.owner-application-page .btn-outline-success {
+    border-color: #20c997;
+    color: #20c997;
+}
+
+.owner-application-page .btn-outline-success:hover {
+    background-color: #20c997;
+    color: white;
+}
+
+.owner-application-page .btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.owner-application-page .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .owner-application-page .table th,
+    .owner-application-page .table td {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    .owner-application-page .table tbody tr {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Empty state */
+.owner-application-page .text-center p.text-muted {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+/*Mangement properties admin*/
+
+.admin-properties-page {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+}
+
+/* Table styling */
+.admin-properties-page .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.admin-properties-page .table th,
+.admin-properties-page .table td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    border: none;
+}
+
+.admin-properties-page .table thead th {
+    background-color: #008080;
+    color: white;
+    font-weight: 600;
+}
+
+/* Row hover */
+.admin-properties-page .table tbody tr:hover {
+    background-color: #e6f5ec;
+}
+
+/* Badges */
+.admin-properties-page .badge.bg-success {
+    background-color: #20c997;
+    color: white;
+}
+
+.admin-properties-page .badge.bg-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+/* Buttons: solid colors */
+.admin-properties-page .btn-details {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white;
+    background-color: #17a2b8; /* blue */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-properties-page .btn-details:hover {
+    background-color: #117a8b; /* darker blue */
+}
+
+.admin-properties-page .btn-approve {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white;
+    background-color: #20c997; /* green */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-properties-page .btn-approve:hover {
+    background-color: #198754; /* darker green */
+}
+
+.admin-properties-page .btn-delete {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white;
+    background-color: #dc3545; /* red */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-properties-page .btn-delete:hover {
+    background-color: #b02a37; /* darker red */
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .admin-properties-page .table th,
+    .admin-properties-page .table td {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    .admin-properties-page .table tbody tr {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Empty state */
+.admin-properties-page .text-center p.text-muted {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+/* Only property title links */
+.admin-properties-page .table tbody tr td:nth-child(2) a {
+    color: coral;             /* coral color */
+    text-decoration: none;     /* remove underline */
+}
+
+.admin-properties-page .table tbody tr td:nth-child(2) a:hover {
+    text-decoration: underline; /* underline only on hover */
+}
+.admin-properties-page h1 {
+    color:  #008080;
+    font-weight: 600;
+    text-align: center;
+}
 
 
+/*USER MANAGEMENT ADMIN*/
+.admin-users-page {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+}
 
+/* Page title */
+.admin-users-page h1 {
+    color: #008080; /* teal title */
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Table styling */
+.admin-users-page .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.admin-users-page .table th,
+.admin-users-page .table td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    border: none;
+}
+
+.admin-users-page .table thead th {
+    background-color: #008080;
+    color: white;
+    font-weight: 600;
+}
+
+/* Row hover */
+.admin-users-page .table tbody tr:hover {
+    background-color: #e6f5ec;
+}
+
+/* Action buttons wrapper */
+.admin-users-page .action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem; /* space between buttons */
+}
+
+/* Details button (filled blue) */
+.admin-users-page .btn-details {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white;
+    background-color: #17a2b8;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-users-page .btn-details:hover {
+    background-color: #117a8b;
+}
+
+/* Delete button (filled red) */
+.admin-users-page .btn-delete {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white;
+    background-color: #dc3545;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-users-page .btn-delete:hover {
+    background-color: #b02a37;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .admin-users-page .table th,
+    .admin-users-page .table td {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    .admin-users-page .table tbody tr {
+        margin-bottom: 1rem;
+    }
+
+    .admin-users-page .action-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Empty state */
+.admin-users-page .text-center p.text-muted {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+/* Create New User button */
+.admin-users-page .btn-create-user {
+    background-color: #008080; /* teal */
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-users-page .btn-create-user:hover {
+    background-color: #006666; /* darker teal on hover */
+}
+/* Approve button (filled green) */
+.admin-users-page .btn-approve {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white; /* white text */
+    background-color: #20c997; /* filled green */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-users-page .btn-approve:hover {
+    background-color: #198754; /* darker green on hover */
+    color: white;
+}
 
 
 
