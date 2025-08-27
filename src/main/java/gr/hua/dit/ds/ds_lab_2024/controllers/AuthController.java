@@ -16,18 +16,18 @@ public class AuthController {
         this.roleRepository = roleRepository;
     }
 
-    @PostConstruct
-    public void setup() {
-        Role role_user = new Role("ROLE_USER");
-        Role role_admin = new Role("ROLE_ADMIN");
-        Role role_owner = new Role("ROLE_OWNER"); // Νέο
-        Role role_tenant = new Role("ROLE_TENANT"); // Νέο
-
-        roleRepository.updateOrInsert(role_user);
-        roleRepository.updateOrInsert(role_admin);
-        roleRepository.updateOrInsert(role_owner); // Νέο
-        roleRepository.updateOrInsert(role_tenant); // Νέο
-    }
+//    @PostConstruct
+//    public void setup() {
+//        Role role_user = new Role("ROLE_USER");
+//        Role role_admin = new Role("ROLE_ADMIN");
+//        Role role_owner = new Role("ROLE_OWNER"); // Νέο
+//        Role role_tenant = new Role("ROLE_TENANT"); // Νέο
+//
+//        roleRepository.updateOrInsert(role_user);
+//        roleRepository.updateOrInsert(role_admin);
+//        roleRepository.updateOrInsert(role_owner); // Νέο
+//        roleRepository.updateOrInsert(role_tenant); // Νέο
+//    }
 
     @GetMapping("/login")
     public String login() {
