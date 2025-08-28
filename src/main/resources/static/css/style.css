@@ -1209,6 +1209,117 @@ html, body {
     background-color: #198754; /* darker green on hover */
     color: white;
 }
+/*apply-form */
+/* Page title */
+.mb-4 {
+    color: #008080;
+    font-weight: 600;
+}
+
+.page-subtitle {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Form wrapper */
+.form-wrapper {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* Submit button */
+.btn-submit {
+    background-color: #ff6b6b;
+    border: none;
+    color: #fff;
+    transition: background-color 0.2s ease-in-out;
+}
+.btn-submit:hover {
+    background-color: #e64a19;
+}
+
+/* Back/Cancel button */
+.btn-back {
+    background-color: #6c757d;
+    border: none;
+    color: #fff;
+    transition: background-color 0.2s ease-in-out;
+}
+.btn-back:hover {
+    background-color: #5a6268;
+}
+/*my applications page-tenant*/
+/* ===== My Applications Page Styling ===== */
+.my-applications-page {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Page Title */
+.my-applications-page h1 {
+    color: #008080; /* teal */
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* Table Styling */
+.my-applications-page .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+}
+
+.my-applications-page thead.table-light th {
+    background-color: #008080; /* teal header */
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.my-applications-page .table td,
+.my-applications-page .table th {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+}
+
+/* Links */
+.my-applications-page a {
+    color: coral;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.my-applications-page a:hover {
+    color: #e6735c; /* darker coral */
+    text-decoration: underline;
+}
+
+/* Badges */
+.my-applications-page .badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.my-applications-page .badge.bg-success {
+    background-color: #20c997 !important;
+    color: #ffffff !important;
+}
+
+.my-applications-page .badge.bg-danger {
+    background-color: #dc3545 !important;
+    color: #ffffff !important;
+}
+
+/* Empty state */
+.my-applications-page .text-muted {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
 
 
 

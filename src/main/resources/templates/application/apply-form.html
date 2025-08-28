@@ -6,23 +6,31 @@
 
 <head>
     <meta charset="UTF-8">
-    <title th:text="'Υποβολή Αίτησης για ' + ${property.title}"></title>
+    <title th:text="'Apply for ' + ${property.title}"></title>
 </head>
+
 <body>
-<div layout:fragment="main-content">
-    <h1 th:text="'Υποβολή Αίτησης για ' + ${property.title}"></h1>
-    <p th:text="'Ιδιοκτήτης: ' + ${property.owner.username}"></p>
+<div layout:fragment="main-content" class="container my-5">
 
-    <form action="#" th:action="@{/properties/{id}/apply(id=${property.id})}" th:object="${rentalApplication}" method="post">
+    <!-- Page title -->
+    <h1 class="text-center mb-4" th:text="'Apply for ' + ${property.title}"></h1>
+    <p class="text-muted text-center" th:text="'Owner: ' + ${property.owner.username}"></p>
 
-        <div class="form-group">
-            <label for="message">Μήνυμα προς τον Ιδιοκτήτη</label>
-            <textarea id="message" class="form-control" th:field="*{message}" rows="5"></textarea>
+    <!-- Application form -->
+    <form th:action="@{/properties/{id}/apply(id=${property.id})}" th:object="${rentalApplication}" method="post" class="form-wrapper">
+
+        <!-- Message field -->
+        <div class="mb-3">
+            <label for="message" class="form-label">Message to the Owner</label>
+            <textarea id="message" class="form-control" th:field="*{message}" rows="5" placeholder="Write your message..."></textarea>
             <span th:if="${#fields.hasErrors('message')}" th:errors="*{message}" class="error text-danger"></span>
         </div>
 
-        <button type="submit" class="btn btn-primary">Υποβολή Αίτησης</button>
-        <a class="btn btn-secondary" th:href="@{'/properties/' + ${property.id}}">Ακύρωση</a>
+        <!-- Buttons -->
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-submit">Submit Application</button>
+            <a class="btn btn-secondary" th:href="@{'/properties/' + ${property.id}}">Cancel</a>
+        </div>
     </form>
 </div>
 </body>

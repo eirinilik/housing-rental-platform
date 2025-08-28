@@ -6,41 +6,52 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Οι Αιτήσεις μου</title>
+    <title>My Applications</title>
 </head>
-<body>
-<div layout:fragment="main-content">
-    <h1>Οι Αιτήσεις μου</h1>
 
-    <div th:if="${ not #lists.isEmpty(applications)}">
-        <table class="table table-hover table-dark">
-            <thead>
+<body>
+<div layout:fragment="main-content" class="container my-5 my-applications-page">
+
+    <!-- Page Title -->
+    <h1 class="text-center mb-4">My Rental Applications</h1>
+
+    <!-- Applications Table -->
+    <div th:if="${not #lists.isEmpty(applications)}" class="table-responsive">
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-light">
             <tr>
-                <th>ID Αίτησης</th>
-                <th>Ακίνητο</th>
-                <th>Ιδιοκτήτης</th>
-                <th>Ημερομηνία Αίτησης</th>
-                <th>Κατάσταση</th>
+                <th>Application ID</th>
+                <th>Property</th>
+                <th>Owner</th>
+                <th>Application Date</th>
+                <th>Status</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="app : ${applications}">
                 <td th:text="${app.id}"></td>
-                <td><a th:href="@{'/properties/' + ${app.property.id}}" th:text="${app.property.title}"></a></td>
+                <td>
+                    <a th:href="@{'/properties/' + ${app.property.id}}" th:text="${app.property.title}"></a>
+                </td>
                 <td th:text="${app.property.owner.username}"></td>
                 <td th:text="${app.applicationDate}"></td>
                 <td>
-                    <span th:if="${app.status.name() == 'PENDING'}" class="badge badge-warning" th:text="${app.status}"></span>
-                    <span th:if="${app.status.name() == 'APPROVED'}" class="badge badge-success" th:text="${app.status}"></span>
-                    <span th:if="${app.status.name() == 'REJECTED'}" class="badge badge-danger" th:text="${app.status}"></span>
+          <span th:if="${app.status.name() == 'PENDING'}" class="badge bg-warning text-dark"
+                th:text="${app.status}"></span>
+                    <span th:if="${app.status.name() == 'APPROVED'}" class="badge bg-success"
+                          th:text="${app.status}"></span>
+                    <span th:if="${app.status.name() == 'REJECTED'}" class="badge bg-danger"
+                          th:text="${app.status}"></span>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div th:if="${ #lists.isEmpty(applications)}">
-        <p>Δεν έχετε υποβάλει καμία αίτηση ενοικίασης ακόμα.</p>
-        <a href="/properties" class="btn btn-primary">Προβολή Διαθέσιμων Ακινήτων</a>
+
+    <!-- Empty state -->
+    <div th:if="${#lists.isEmpty(applications)}" class="text-center mt-4">
+        <p class="text-muted fs-5">You have not submitted any rental applications yet.</p>
+        <a href="/properties" class="btn btn-primary">View Available Properties</a>
     </div>
 
 </div>
