@@ -20,13 +20,15 @@ public class UserController {
         this.userService = userService;
         this.roleRepository = roleRepository;
     }
-
+    //GET για τη σελίδα εγγραφής.
     @GetMapping("/register")
     public String register(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "auth/register";
     }
+
+    //Χειρίζεται τα  POST από τον διαχειριστή για την έγκριση του αιτούμενου ρόλου ενός χρήστη
     @Secured("ROLE_ADMIN")
     @PostMapping("/user/approve-role/{id}")
     public String approveRequestedRole(@PathVariable Long id, @RequestParam("requestedRole") String roleName, Model model){
@@ -36,7 +38,7 @@ public class UserController {
         model.addAttribute("successMessage", "Ο ρόλος του χρήστη εγκρίθηκε επιτυχώς!");
         return "redirect:/users";
     }
-
+//     Χειρίζεται τα  POST για την εγγραφή νέου χρήστη.
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute User user, @RequestParam("role") String roleName, Model model){
         // Προσθέστε αυτή τη γραμμή για να δείτε τι τιμή λαμβάνει ο controller
@@ -47,20 +49,20 @@ public class UserController {
         model.addAttribute("msg", message);
         return "index";
     }
-
+   // Χειρίζεται τα αιτήματα GET για την εμφάνιση της σελίδας διαχείρισης χρηστών για τον admin
     @GetMapping("/users")
     public String showUsers(Model model){
         model.addAttribute("users", userService.getUsers());
         model.addAttribute("roles", roleRepository.findAll());
         return "auth/users";
     }
-
+//    Χειρίζεται τα  GET για την εμφάνιση των λεπτομερειών ενός χρήστη προς επεξεργασία.
     @GetMapping("/user/{user_id}")
     public String showUser(@PathVariable Long user_id, Model model){
         model.addAttribute("user", userService.getUser(user_id));
         return "auth/user";
     }
-
+//     Χειρίζεται τα  POST για την αποθήκευση των ενημερωμένων πληροφοριών ενός χρήστη.
     @PostMapping("/user/{user_id}")
     public String saveStudent(@PathVariable Long user_id, @ModelAttribute("user") User user, Model model) {
         User the_user = (User) userService.getUser(user_id);
@@ -70,7 +72,7 @@ public class UserController {
         model.addAttribute("users", userService.getUsers());
         return "auth/users";
     }
-
+//    Χειρίζεται τα  GET για τη διαγραφή ενός συγκεκριμένου ρόλου από έναν χρήστη
     @GetMapping("/user/role/delete/{user_id}/{role_id}")
     public String deleteRolefromUser(@PathVariable Long user_id, @PathVariable Integer role_id, Model model){
         User user = (User) userService.getUser(user_id);
@@ -83,7 +85,7 @@ public class UserController {
         return "auth/users";
 
     }
-
+//     Χειρίζεται τα αιτήματα GET για την προσθήκη ενός συγκεκριμένου ρόλου σε έναν χρήστη.
     @GetMapping("/user/role/add/{user_id}/{role_id}")
     public String addRoletoUser(@PathVariable Long user_id, @PathVariable Integer role_id, Model model){
         User user = (User) userService.getUser(user_id);
