@@ -15,8 +15,5 @@ public interface PropertyRepository extends JpaRepository<Property, Integer> {
     List<Property> findByOwner(User owner); // Βρίσκει ακίνητα βάσει ιδιοκτήτη
     List<Property> findByIsApprovedFalse(); // Βρίσκει ακίνητα που περιμένουν έγκριση (για Admin)
 
-    // Μπορείτε να προσθέσετε και άλλες μεθόδους αναζήτησης/φιλτραρίσματος αργότερα, π.χ.
-    // List<Property> findByAddressContainingIgnoreCase(String keyword);
-    // List<Property> findByPropertyType(PropertyType type);
-    // List<Property> findByRentAmountBetween(Double minRent, Double maxRent);
+
 }
