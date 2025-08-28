@@ -7,16 +7,18 @@
 </head>
 <body>
 
-<footer class="mastfoot mt-auto" th:fragment="header">
-  <div class="inner">
-      <div sec:authorize="isAuthenticated()">
-          Authenticated username:
-          <span sec:authentication="name"></span>
-          Authenticated user roles:
-          <span sec:authentication="principal.authorities"></span>
-      </div>
-    <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-  </div>
+<footer class="mastfoot mt-auto" th:fragment="footer">
+    <div class="inner footer-content">
+        <div class="auth-info" sec:authorize="isAuthenticated()">
+            <p>Authenticated username: <span sec:authentication="name"></span></p>
+            <p>Authenticated user roles: <span sec:authentication="principal.authorities"></span></p>
+        </div>
+        <p class="footer-text">
+            Cover template for <a href="https://getbootstrap.com/" class="footer-special">Bootstrap</a>,
+            by <a href="https://twitter.com/mdo" class="footer-special">@mdo</a>.
+        </p>
+    </div>
 </footer>
+
 </body>
 </html>

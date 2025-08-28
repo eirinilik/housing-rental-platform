@@ -7,47 +7,77 @@
 
 <head>
   <meta charset="UTF-8">
-  <title th:text="${property.title}"></title>
+  <title th:text="${property.title}">Property Details</title>
+  <link rel="stylesheet" th:href="@{/css/property-details.css}">
 </head>
 <body>
-<div layout:fragment="main-content">
-  <h1 th:text="${property.title}"></h1>
+<div layout:fragment="main-content" class="container property-details-page">
 
-  <div th:if="${property}">
-    <div class="card text-white bg-dark mb-3">
-      <div class="card-header">
-        <h2>Λεπτομέρειες Ακινήτου</h2>
-      </div>
-      <div class="card-body">
-        <p class="card-text"><strong>Τίτλος:</strong> <span th:text="${property.title}"></span></p>
-        <p class="card-text"><strong>Περιγραφή:</strong> <span th:text="${property.description}"></span></p>
-        <p class="card-text"><strong>Διεύθυνση:</strong> <span th:text="${property.address}"></span></p>
-        <p class="card-text"><strong>Τύπος:</strong> <span th:text="${property.propertyType}"></span></p>
-        <p class="card-text"><strong>Υπνοδωμάτια:</strong> <span th:text="${property.bedrooms}"></span></p>
-        <p class="card-text"><strong>Μπάνια:</strong> <span th:text="${property.bathrooms}"></span></p>
-        <p class="card-text"><strong>Τετραγωνικά Μέτρα:</strong> <span th:text="${property.squareMeters}"></span></p>
-        <p class="card-text"><strong>Ποσό Ενοικίου:</strong> <span th:text="${property.rentAmount} + '€'"></span></p>
-        <p class="card-text"><strong>Διαθέσιμο από:</strong> <span th:text="${property.availabilityDate}"></span></p>
-        <p class="card-text">
-          <strong>Ιδιοκτήτης:</strong>
+  <!-- Property Title -->
+  <h1 class="text-center property-title mb-4">Details of this property</h1>
+
+  <!-- Property Details -->
+  <div th:if="${property}" class="card property-card p-4 mb-4">
+
+    <table class="table table-borderless">
+      <tbody>
+      <tr>
+        <th>Title:</th>
+        <td th:text="${property.title}"></td>
+        <th>Type:</th>
+        <td th:text="${property.propertyType}"></td>
+      </tr>
+      <tr>
+        <th>Description:</th>
+        <td th:text="${property.description}"></td>
+        <th>Address:</th>
+        <td th:text="${property.address}"></td>
+      </tr>
+      <tr>
+        <th>Bedrooms:</th>
+        <td th:text="${property.bedrooms}"></td>
+        <th>Bathrooms:</th>
+        <td th:text="${property.bathrooms}"></td>
+      </tr>
+      <tr>
+        <th>Square Meters:</th>
+        <td th:text="${property.squareMeters}"></td>
+        <th>Rent:</th>
+        <td th:text="${property.rentAmount} + '€'"></td>
+      </tr>
+      <tr>
+        <th>Available From:</th>
+        <td th:text="${property.availabilityDate}"></td>
+        <th>Owner:</th>
+        <td>
           <span th:if="${property.owner != null}" th:text="${property.owner.username}"></span>
-          <span th:unless="${property.owner != null}">Άγνωστος</span>
-        </p>
-        <p class="card-text">
-          <strong>Κατάσταση Έγκρισης:</strong>
-          <span th:if="${property.isApproved}" class="badge badge-success">Εγκεκριμένο</span>
-          <span th:unless="${property.isApproved}" class="badge badge-warning">Αναμένει Έγκριση</span>
-        </p>
-      </div>
-      <div class="card-footer">
-        <a sec:authorize="hasRole('TENANT')" class="btn btn-success" th:href="@{'/properties/' + ${property.id} + '/apply'}">Υποβολή Αίτησης</a>
-        <a class="btn btn-secondary" href="/properties">Πίσω στα Ακίνητα</a>
-      </div>
+          <span th:unless="${property.owner != null}">Unknown</span>
+        </td>
+      </tr>
+      <tr>
+        <th>Status:</th>
+        <td colspan="3">
+          <span th:if="${property.isApproved}" class="status-approved">Approved</span>
+          <span th:unless="${property.isApproved}" class="status-pending">Pending</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <!-- Action Buttons -->
+    <div class="mt-4 d-flex gap-2 flex-wrap">
+      <a sec:authorize="hasRole('TENANT')"
+         class="btn btn-apply"
+         th:href="@{'/properties/' + ${property.id} + '/apply'}">Apply</a>
+      <a class="btn btn-back" href="/properties">Back to Properties</a>
     </div>
   </div>
-  <div th:if="${property == null}">
-    <p>Το ακίνητο δεν βρέθηκε.</p>
+
+  <!-- If Property Not Found -->
+  <div th:if="${property == null}" class="text-center">
+    <p class="text-muted">Property not found.</p>
   </div>
+
 </div>
 </body>
 </html>

@@ -1,0 +1,1325 @@
+/* Globals */
+a, a:focus, a:hover {
+    color: #008080; /* brand teal for all links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: #006666; /* darker teal on hover */
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #333;
+    text-shadow: none;
+    background-color: #fff;
+    border: 0.05rem solid #fff;
+}
+
+/* Base structure */
+html, body {
+    height: 100%;
+    background-color: #f8f9fa; /* light gray background */
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Hero Section */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 4rem 8%;
+    gap: 2rem;
+}
+
+.hero-text {
+    color: #1D3557;
+}
+.hero-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #444;
+}
+
+.btn-primary {
+    background: #008080;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.btn-primary:hover {
+    background: #006666;
+}
+
+.btn-accent {
+    background: #ff6b6b;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+.btn-accent:hover {
+    background: #e63946;
+}
+
+/* Header (nav bar) */
+.masthead {
+    margin-bottom: 2rem;
+}
+.masthead-brand {
+    margin-bottom: 0;
+    font-weight: bold;
+    color: #008080;
+}
+.brand-icon {
+    width: 32px;   /* adjust size as needed */
+    height: 32px;  /* maintain aspect ratio */
+    margin-right: 8px; /* space between icon and text */
+}
+.nav-masthead {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.nav-masthead .nav-link {
+    padding: .25rem 0;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: transparent;
+    border-bottom: .25rem solid transparent;
+    transition: all 0.3s ease;
+}
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+    border-bottom-color: #008080;
+    color: #008080;
+}
+.nav-masthead .active {
+    color: #008080;
+    border-bottom-color: #008080;
+}
+
+/* Footer */
+.mastfoot {
+    background-color: #ffe6e0; /* very light coral */
+    color: #ff7043; /* medium coral text */
+    font-size: 0.85rem; /* slightly smaller text */
+    text-align: center;
+    padding: 0.25rem 0; /* very thin footer */
+    margin: 0; /* no extra spacing */
+    width: 100%; /* full width */
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    border-top: 1px solid #ff7043; /* subtle coral border */
+}
+
+.mastfoot a {
+    color: #ff5722; /* bright coral links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mastfoot a:hover {
+    color: #e64a19; /* darker coral on hover */
+}
+
+.mastfoot .auth-info {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: #ff7043;
+}
+
+.footer-text {
+    margin: 0;
+}
+.mastfoot a.footer-special {
+    color: #e64a19; /* different color for Bootstrap and @mdo links */
+}
+.hero-text h1 {
+    font-size: 2rem; /* smaller heading */
+    margin-bottom: 0.8rem;
+}
+/* index.html home page   */
+/* Intro Section */
+.intro-section {
+    text-align: center;
+    padding: 2rem 2rem;
+    background-color: #f0f8f8; /* light teal background */
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.intro-section h1 {
+    font-size: 2.5rem; /* keep header large */
+    color: #008080;
+    margin-bottom: 1rem;
+}
+
+.intro-section p {
+    font-size: 1.1rem;
+    color: #444;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Emphasis for specific words */
+.highlight-owner {
+    color: #ff6b6b; /* teal for owners */
+    font-weight: bold;
+}
+
+.highlight-renter {
+    color: #ff6b6b; /* coral for renters */
+    font-weight: bold;
+}
+.highlight-bold {
+    font-weight: bold;
+    color: #008080; /* or coral, choose one consistent color */
+}
+/*next for owners*/
+/* Left side: hero text adjustments */
+.hero-text h1 {
+    font-size: 2rem; /* smaller heading */
+    margin-bottom: 0.8rem;
+}
+
+.hero-text p {
+    font-size: 1rem; /* smaller paragraph */
+    color: #444;
+    margin-bottom: 1.5rem;
+}
+
+/* Buttons spacing (optional) */
+.hero-buttons a {
+    margin-right: 0.8rem;
+    padding: 10px 20px; /* slightly smaller buttons */
+}
+/* Right side: images in a horizontal row */
+.hero-images {
+    display: flex;
+    flex-direction: row; /* horizontal alignment */
+    gap: 1rem;
+    align-items: flex-end; /* allows middle image to be slightly lower */
+}
+
+/* All images: slim, rounded corners */
+.hero-images .hero-img {
+    width: 32%; /* slim images, three fit in a row */
+    height: 300px; /* adjust height to make them slim */
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Make middle image slightly lower */
+.hero-images .hero-img:nth-child(2) {
+    transform: translateY(15px);
+}
+
+/* Responsive: stack images vertically on small screens */
+@media (max-width: 768px) {
+    .hero-images {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .hero-images .hero-img {
+        width: 80%;
+        height: auto;
+        transform: none;
+    }
+}
+
+
+/* Renters hero section: images on the left, text on the right */
+
+.hero-section-renters .hero-images {
+    display: flex;
+    flex-direction: row; /* horizontal alignment */
+    gap: 1rem;
+    align-items: flex-end; /* optional: stagger effect */
+}
+
+/* All images: slim, rounded corners */
+.hero-section-renters .hero-images .hero-img {
+    width: 48%; /* adjust width for two images */
+    height: 300px; /* slim height */
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+
+/* Optional: stagger middle image (if more than 2 images) */
+.hero-section-renters .hero-images .hero-img:nth-child(2) {
+    transform: translateY(10px);
+}
+
+/* Responsive: stack images vertically on small screens */
+@media (max-width: 768px) {
+    .hero-section-renters .hero-images {
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-section-renters .hero-images .hero-img {
+        width: 80%;
+        transform: none;
+    }
+}
+
+/*sction how it works*/
+.how-it-works {
+    text-align: center;
+    padding: 3rem 8%;
+    background-color: #f8f9fa;
+}
+
+.how-it-works h2 {
+    font-size: 2rem;
+    color: #008080;
+    margin-bottom: 2rem;
+}
+
+/* Steps container: horizontal layout */
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* Individual step */
+.step {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    flex: 1 1 22%; /* four steps horizontally, responsive */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-width: 220px; /* ensures they don’t shrink too much on small screens */
+}
+
+.step-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6b6b;
+    margin-bottom: 0.5rem;
+}
+
+.step h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #008080;
+}
+
+.step p {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.4;
+}
+
+/* Responsive: stack steps vertically on small screens */
+@media (max-width: 768px) {
+    .steps-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .step {
+        flex: 1 1 100%;
+    }
+}
+
+/*registration*/
+.alert-coral {
+    background-color: #ff6b6b; /* coral background */
+    color: black;              /* text color */
+    border: 1px solid #ff6b6b; /* border same as background */
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+}
+
+/* Wrapper centers the form and leaves space around */
+.registration-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4rem 1rem; /* space above and sides */
+    background-color: #f8f9fa; /* subtle background */
+}
+
+/* Form container */
+.registration-container {
+    width: 100%;
+    max-width: 450px; /* limit width */
+    padding: 2rem;
+    background-color: #f0f8f8;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Heading */
+.registration-container h2 {
+    text-align: center;
+    color: #008080;
+    margin-bottom: 1.5rem;
+}
+
+/* Alerts */
+.alert {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.alert-coral {
+    background-color: #ff6b6b;
+    color: white;
+    border: 1px solid #ff6b6b;
+}
+
+.alert-info {
+    background-color: #e0f7f7;
+    color: #008080;
+    border: 1px solid #008080;
+}
+
+/* Form elements */
+.registration-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.registration-form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.registration-form input,
+.registration-form select {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.registration-form input:focus,
+.registration-form select:focus {
+    border-color: #008080;
+}
+
+/* Submit button */
+.registration-form button {
+    background-color: #008080;
+    color: white;
+    padding: 0.6rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.registration-form button:hover {
+    background-color: #006666;
+}
+
+/* Login link */
+.login-link {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.login-link a {
+    color: #ff6b6b; /* coral */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.login-link a:hover {
+    color: #e64a19;
+}
+
+/*logout button*/
+.btn.btn-primary.nav-link {
+    background-color: #ff6b6b;  /* coral */
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.btn.btn-primary.nav-link:hover {
+    background-color: #e64a19; /* darker coral on hover */
+    color: white;
+}
+/*AVAILBLE PROPERTIES*/
+/* Headings */
+/* Available Properties Page Scoped CSS */
+.available-properties-page .heading-main {
+    color: #008080;
+}
+
+/* Filter Form */
+.available-properties-page .filter-form {
+    background-color: #f8f9fa;
+}
+
+.available-properties-page .filter-form label {
+    font-weight: 600;
+}
+
+/* Buttons */
+.available-properties-page .btn-primary {
+    background-color: #008080;
+    color: white;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.available-properties-page .btn-primary:hover {
+    background-color: #006666;
+}
+
+.available-properties-page .btn-accent {
+    background-color: #ff6b6b;
+    color: white;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.available-properties-page .btn-accent:hover {
+    background-color: #e64a19;
+}
+
+/* Cards */
+.available-properties-page .property-card {
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.available-properties-page .property-card img {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.available-properties-page .property-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Empty state */
+.available-properties-page .empty-text {
+    font-size: 1.2rem;
+    color: #ff6b6b;
+}
+
+.available-properties-page .property-image {
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.available-properties-page .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+/*property-form.html*/
+.property-form-page .form-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.property-form-page .form-title {
+    color: #008080;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.property-form-page label {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    display: block;
+    color: #333;
+}
+
+.property-form-page .form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 0.6rem;
+    font-size: 1rem;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.property-form-page .form-control:focus {
+    border-color: #008080;
+    box-shadow: 0 0 4px rgba(0, 128, 128, 0.3);
+}
+
+.property-form-page .error {
+    font-size: 0.9rem;
+    color: #ff6b6b;
+    display: block;
+    margin-top: 0.2rem;
+}
+
+.property-form-page .btn-submit {
+    background-color: #ff6b6b;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.property-form-page .btn-submit:hover {
+    background-color: #e64a19;
+}
+
+
+/* My Properties Page Scoped CSS */
+
+.my-properties-page {
+    max-width: 900px;
+    background: #fdfefe;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+
+}
+
+/* Heading */
+.my-properties-page h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #008080; /* or use #138496 */
+}
+
+/* Table styling */
+.my-properties-page .custom-table {
+    background-color: #f9fbfb;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+}
+
+.my-properties-page .custom-table thead {
+    background-color: #008080; /* teal vibe */
+    color: white;
+    font-size: 0.95rem;
+}
+
+.my-properties-page .custom-table tbody tr {
+    transition: background-color 0.2s ease-in-out;
+}
+
+.my-properties-page .custom-table tbody tr:hover {
+    background-color: #eaf6f6;
+}
+
+/* Status badges */
+.my-properties-page .status-approved {
+    background-color: #20c997;
+    color: white;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.my-properties-page .status-pending {
+    background-color: #ffc107;
+    color: #212529;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+/* Buttons */
+.my-properties-page .btn-details {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.my-properties-page .btn-details:hover {
+    background-color: #138496;
+}
+
+.my-properties-page .btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.my-properties-page .btn-delete:hover {
+    background-color: #b02a37;
+}
+
+.my-properties-page .btn-add {
+    background-color: #008080;
+    color: white;
+    padding: 0.6rem 1.3rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.my-properties-page .btn-add:hover {
+    background-color: #006666;
+    color: white;
+}
+
+
+/*property-details*/
+/* Main container */
+.property-details-page {
+    background-color: #ffffff; /* white background */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    margin: 2rem auto; /* top and bottom margin */
+}
+
+/* Page title */
+.property-details-page .property-title {
+    color: #008080; /* teal */
+    font-weight: 600;
+}
+
+/* Property card */
+.property-details-page .property-card {
+    background-color: #d9f2e6; /* light green */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 1.5rem;
+}
+
+/* Table styling */
+.property-details-page table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem; /* spacing between rows */
+}
+
+.property-details-page table th {
+    width: 25%;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+    vertical-align: top;
+    padding: 0.5rem 0.75rem;
+}
+
+.property-details-page table td {
+    color: #555;
+    padding: 0.5rem 0.75rem;
+    background-color: #e6f5ec; /* very light green */
+    border-radius: 6px;
+}
+
+/* Status badges: confined to their cell */
+.property-details-page .status-approved,
+.property-details-page .status-pending {
+    display: inline-block;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.property-details-page .status-approved {
+    background-color: #20c997; /* green */
+    color: white;
+}
+
+.property-details-page .status-pending {
+    background-color: #ff6b6b; /* coral */
+    color: white;
+}
+
+/* Buttons: coral theme */
+.property-details-page .btn-apply,
+.property-details-page .btn-back {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    color: white;
+}
+
+.property-details-page .btn-apply,
+.property-details-page .btn-back {
+    background-color: #ff6b6b; /* coral */
+}
+
+.property-details-page .btn-apply:hover,
+.property-details-page .btn-back:hover {
+    background-color: #e64a19; /* darker coral */
+}
+
+/* Responsive: stack table rows on small screens */
+@media (max-width: 768px) {
+    .property-details-page table th,
+    .property-details-page table td {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+}
+
+/* Owner Application */
+/* Page container */
+.owner-application-page.container.my-6 {
+    background-color: #ffffff; /* white container */
+    padding: 2rem;
+    border-radius: 12px;       /* only container has rounded corners */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;            /* top and bottom spacing */
+}
+
+/* Page title */
+.owner-application-page h1.text-center {
+    color: #008080; /* teal color */
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* Table styling */
+/* Container styling */
+.owner-application-page.container.my-6 {
+    background-color: #ffffff; /* white container */
+    padding: 2rem;
+    border-radius: 12px;       /* rounded container */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;            /* top and bottom margin */
+}
+
+/* Page title */
+.owner-application-page h1.text-center {
+    color: #008080; /* teal color */
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* Table container rounded corners */
+.owner-application-page .table {
+    width: 100%;
+    border-collapse: separate; /* keep spacing for rounded corners */
+    border-spacing: 0;
+    border-radius: 12px;       /* round corners for table */
+    overflow: hidden;          /* ensures corners stay clipped */
+    background-color: #f8f9fa; /* table background */
+}
+
+/* Table header and cells */
+.owner-application-page .table th,
+.owner-application-page .table td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    border: none;              /* remove internal borders */
+    background-color: transparent; /* flat cells */
+    border-radius: 0;          /* no rounded corners for cells */
+}
+
+/* Table header background */
+.owner-application-page .table thead th {
+    background-color: #008080; /* teal header row */
+    color: white;
+    font-weight: 600;
+}
+
+/* Optional: hover effect for rows */
+.owner-application-page .table tbody tr:hover {
+    background-color: #e6f5ec;
+}
+
+/* Links inside table */
+.owner-application-page .table td a {
+    color: coral;           /* coral links */
+    text-decoration: none;
+}
+
+.owner-application-page .table td a:hover {
+    text-decoration: underline;
+}
+
+/* Badges */
+.owner-application-page .badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.owner-application-page .badge.bg-success {
+    background-color: #20c997 !important;
+    color: white !important;
+}
+
+.owner-application-page .badge.bg-danger {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+/* Buttons */
+.owner-application-page .btn-outline-success {
+    border-color: #20c997;
+    color: #20c997;
+}
+
+.owner-application-page .btn-outline-success:hover {
+    background-color: #20c997;
+    color: white;
+}
+
+.owner-application-page .btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.owner-application-page .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .owner-application-page .table th,
+    .owner-application-page .table td {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    .owner-application-page .table tbody tr {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Empty state */
+.owner-application-page .text-center p.text-muted {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+/*Mangement properties admin*/
+
+.admin-properties-page {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+}
+
+/* Table styling */
+.admin-properties-page .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.admin-properties-page .table th,
+.admin-properties-page .table td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    border: none;
+}
+
+.admin-properties-page .table thead th {
+    background-color: #008080;
+    color: white;
+    font-weight: 600;
+}
+
+/* Row hover */
+.admin-properties-page .table tbody tr:hover {
+    background-color: #e6f5ec;
+}
+
+/* Badges */
+.admin-properties-page .badge.bg-success {
+    background-color: #20c997;
+    color: white;
+}
+
+.admin-properties-page .badge.bg-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+/* Buttons: solid colors */
+.admin-properties-page .btn-details {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white;
+    background-color: #17a2b8; /* blue */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-properties-page .btn-details:hover {
+    background-color: #117a8b; /* darker blue */
+}
+
+.admin-properties-page .btn-approve {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white;
+    background-color: #20c997; /* green */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-properties-page .btn-approve:hover {
+    background-color: #198754; /* darker green */
+}
+
+.admin-properties-page .btn-delete {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white;
+    background-color: #dc3545; /* red */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-properties-page .btn-delete:hover {
+    background-color: #b02a37; /* darker red */
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .admin-properties-page .table th,
+    .admin-properties-page .table td {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    .admin-properties-page .table tbody tr {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Empty state */
+.admin-properties-page .text-center p.text-muted {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+/* Only property title links */
+.admin-properties-page .table tbody tr td:nth-child(2) a {
+    color: coral;             /* coral color */
+    text-decoration: none;     /* remove underline */
+}
+
+.admin-properties-page .table tbody tr td:nth-child(2) a:hover {
+    text-decoration: underline; /* underline only on hover */
+}
+.admin-properties-page h1 {
+    color:  #008080;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+/*USER MANAGEMENT ADMIN*/
+.admin-users-page {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+}
+
+/* Page title */
+.admin-users-page h1 {
+    color: #008080; /* teal title */
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Table styling */
+.admin-users-page .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.admin-users-page .table th,
+.admin-users-page .table td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    border: none;
+}
+
+.admin-users-page .table thead th {
+    background-color: #008080;
+    color: white;
+    font-weight: 600;
+}
+
+/* Row hover */
+.admin-users-page .table tbody tr:hover {
+    background-color: #e6f5ec;
+}
+
+/* Action buttons wrapper */
+.admin-users-page .action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem; /* space between buttons */
+}
+
+/* Details button (filled blue) */
+.admin-users-page .btn-details {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white;
+    background-color: #17a2b8;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-users-page .btn-details:hover {
+    background-color: #117a8b;
+}
+
+/* Delete button (filled red) */
+.admin-users-page .btn-delete {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white;
+    background-color: #dc3545;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-users-page .btn-delete:hover {
+    background-color: #b02a37;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .admin-users-page .table th,
+    .admin-users-page .table td {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    .admin-users-page .table tbody tr {
+        margin-bottom: 1rem;
+    }
+
+    .admin-users-page .action-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Empty state */
+.admin-users-page .text-center p.text-muted {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+/* Create New User button */
+.admin-users-page .btn-create-user {
+    background-color: #008080; /* teal */
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-users-page .btn-create-user:hover {
+    background-color: #006666; /* darker teal on hover */
+}
+/* Approve button (filled green) */
+.admin-users-page .btn-approve {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: white; /* white text */
+    background-color: #20c997; /* filled green */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-users-page .btn-approve:hover {
+    background-color: #198754; /* darker green on hover */
+    color: white;
+}
+/*apply-form */
+/* Page title */
+.mb-4 {
+    color: #008080;
+    font-weight: 600;
+}
+
+.page-subtitle {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Form wrapper */
+.form-wrapper {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* Submit button */
+.btn-submit {
+    background-color: #ff6b6b;
+    border: none;
+    color: #fff;
+    transition: background-color 0.2s ease-in-out;
+}
+.btn-submit:hover {
+    background-color: #e64a19;
+}
+
+/* Back/Cancel button */
+.btn-back {
+    background-color: #6c757d;
+    border: none;
+    color: #fff;
+    transition: background-color 0.2s ease-in-out;
+}
+.btn-back:hover {
+    background-color: #5a6268;
+}
+/*my applications page-tenant*/
+/* ===== My Applications Page Styling ===== */
+.my-applications-page {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Page Title */
+.my-applications-page h1 {
+    color: #008080; /* teal */
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* Table Styling */
+.my-applications-page .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+}
+
+.my-applications-page thead.table-light th {
+    background-color: #008080; /* teal header */
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.my-applications-page .table td,
+.my-applications-page .table th {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+}
+
+/* Links */
+.my-applications-page a {
+    color: coral;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.my-applications-page a:hover {
+    color: #e6735c; /* darker coral */
+    text-decoration: underline;
+}
+
+/* Badges */
+.my-applications-page .badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.my-applications-page .badge.bg-success {
+    background-color: #20c997 !important;
+    color: #ffffff !important;
+}
+
+.my-applications-page .badge.bg-danger {
+    background-color: #dc3545 !important;
+    color: #ffffff !important;
+}
+
+/* Empty state */
+.my-applications-page .text-muted {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+
+
