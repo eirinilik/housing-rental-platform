@@ -30,20 +30,19 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home", "/register", "/saveUser", "/images/**", "/js/**", "/css/**").permitAll() // General public access
-                        .requestMatchers("/properties").permitAll() // All can view approved properties
-                        .requestMatchers("/properties/new").hasRole("OWNER") // Only Owners can add new property
-                        .requestMatchers("/properties/my/**").hasRole("OWNER") // Owners can view their properties
-                        .requestMatchers("/properties/{propertyId}/apply").hasRole("TENANT") // Tenants can apply
-                        .requestMatchers("/tenant/**").hasRole("TENANT") // Tenant specific paths
-                        .requestMatchers("/owner/**").hasRole("OWNER") // Owner specific paths
-                        .requestMatchers("/admin/**").hasRole("ADMIN") // Admin specific paths
-                        // All other authenticated requests
+                        .requestMatchers("/", "/home", "/register", "/saveUser", "/images/**", "/js/**", "/css/**").permitAll() //ΠΡΟΣΒΑΣΗ ΑΠΟ ΟΛΟΥΣ
+                        .requestMatchers("/properties").permitAll() //ΠΡΟΣΒΑΣΗ ΑΠΟ ΟΛΟΥΣ
+                        .requestMatchers("/properties/new").hasRole("OWNER") // ΜΟΝΟ ΟΙ ΙΔΙΟΚΤΗΤΕΣ ΜΠΟΡΟΥΝ ΝΑ ΠΡΟΣΘΕΣΟΥΝ ΚΑΙΝΟΥΡΙΟ ΑΚΙΝΗΤΟ
+                        .requestMatchers("/properties/my/**").hasRole("OWNER") // ΙΔΙΟΚΤΗΤΕΣ ΜΠΟΡΟΥΝ ΝΑ ΔΟΥΝ ΤΑ ΑΚΙΝΗΤΑ ΤΟΥΣ
+                        .requestMatchers("/properties/{propertyId}/apply").hasRole("TENANT") // ΕΝΟΙΚΙΑΣΤΕΣ ΜΠΟΡΟΥΝ ΝΑ ΚΑΝΟΥΝ APPLY
+                        .requestMatchers("/tenant/**").hasRole("TENANT") // ΕΝΟΙΚΙΑΣΤΗ specific paths
+                        .requestMatchers("/owner/**").hasRole("OWNER") // ΙΔΙΟΚΤΗΤΗ specific paths
+                        .requestMatchers("/admin/**").hasRole("ADMIN") // ADMIN specific paths
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/properties", true) // Redirect to properties list after successful login
+                        .defaultSuccessUrl("/properties", true) // ANAKAΤΕΥΘΥΝΣΗ ΣΤΟ ΛΙΣΤΑ ΜΕ ΤΑ ΑΚΙΝΗΤΑ ΜΕΤΑ ΤΟ LOG IN
                         .permitAll())
                 .logout((logout) -> logout.permitAll());
         return http.build();

@@ -30,7 +30,7 @@ public class PropertyController {
         this.userService = userService;
     }
 
-    // GET /properties: Εμφάνιση όλων των εγκεκριμένων ακινήτων (με φίλτρα)
+    // GET /properties: Εμφάνιση όλων των approved ακινήτων (με φίλτρα)
     @GetMapping("/properties")
     public String listApprovedProperties(
             @RequestParam(required = false) String address,
@@ -52,7 +52,7 @@ public class PropertyController {
         return "property/properties";
     }
 
-    // GET /properties/{id}: Λεπτομέρειες ακινήτου
+    // GET /properties/{id}: Λεπτομeρειες ακινήτου
     @GetMapping("/properties/{id}")
     public String showPropertyDetails(@PathVariable Integer id, Model model) {
         try {
@@ -93,7 +93,7 @@ public class PropertyController {
         return "redirect:/properties/my";
     }
 
-    // GET /properties/my (ROLE_OWNER): Λίστα ακινήτων του συνδεδεμένου ιδιοκτήτη
+    // GET /properties/my (ROLE_OWNER): Λίστα ακινήτων του συνδεδεμενου ιδιοκτήτη
     @Secured("ROLE_OWNER")
     @GetMapping("/properties/my")
     public String listMyProperties(Authentication authentication, Model model) {

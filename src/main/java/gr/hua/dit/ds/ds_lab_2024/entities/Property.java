@@ -9,49 +9,54 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * The Property class represents a property entity within the application.
+ * It stores all the necessary details of a property and its relationships
+ * with other entities, such as the owner and rental applications.
+ */
 @Entity
-@Table(name = "properties") // Ονομασία πίνακα στη βάση δεδομένων
+@Table(name = "properties") // Table name in the database
 public class Property {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Ο τίτλος είναι υποχρεωτικός")
-    @Size(min = 3, max = 100, message = "Ο τίτλος πρέπει να είναι μεταξύ 3 και 100 χαρακτήρων")
+    @NotBlank(message = "The title is required")
+    @Size(min = 3, max = 100, message = "The title must be between 3 and 100 characters")
     @Column(name = "title")
     private String title;
 
-    @NotBlank(message = "Η περιγραφή είναι υποχρεωτική")
+    @NotBlank(message = "The description is required")
     @Column(name = "description", length = 1000) // Μεγαλύτερο μήκος για την περιγραφή
     private String description;
 
-    @NotBlank(message = "Η διεύθυνση είναι υποχρεωτική")
+    @NotBlank(message = "The address is required")
     @Column(name = "address")
     private String address;
 
-    @NotNull(message = "Ο τύπος ακινήτου είναι υποχρεωτικός")
+    @NotNull(message = "The property type is required")
     @Enumerated(EnumType.STRING) // Αποθήκευση του enum ως String στη βάση
     @Column(name = "property_type")
-    private PropertyType propertyType; // Νέο Enum: PropertyType
+    private PropertyType propertyType;
 
-    @NotNull(message = "Ο αριθμός υπνοδωματίων είναι υποχρεωτικός")
-    @Min(value = 0, message = "Ο αριθμός υπνοδωματίων δεν μπορεί να είναι αρνητικός")
+    @NotNull(message = "The number of bedrooms is required")
+    @Min(value = 0, message = "The number of bedrooms cannot be negative")
     @Column(name = "bedrooms")
     private Integer bedrooms;
 
-    @NotNull(message = "Ο αριθμός μπάνιων είναι υποχρεωτικός")
-    @Min(value = 0, message = "Ο αριθμός μπάνιων δεν μπορεί να είναι αρνητικός")
+    @NotNull(message = "The number of bathrooms is required")
+    @Min(value = 0, message = "The number of bathrooms cannot be negative")
     @Column(name = "bathrooms")
     private Integer bathrooms;
 
-    @NotNull(message = "Τα τετραγωνικά μέτρα είναι υποχρεωτικά")
-    @Min(value = 1, message = "Τα τετραγωνικά μέτρα πρέπει να είναι τουλάχιστον 1")
+    @NotNull(message = "The square meters are required")
+    @Min(value = 1, message = "The square meters must be at least 1")
     @Column(name = "square_meters")
     private Integer squareMeters;
 
-    @NotNull(message = "Το ποσό ενοικίου είναι υποχρεωτικό")
-    @Min(value = 0, message = "Το ποσό ενοικίου δεν μπορεί να είναι αρνητικό")
+    @NotNull(message = "The rent amount is required")
+    @Min(value = 0, message = "The rent amount cannot be negative")
     @Column(name = "rent_amount")
     private Double rentAmount;
 
@@ -59,14 +64,14 @@ public class Property {
     private LocalDate availabilityDate; // Ημερομηνία διαθεσιμότητας
 
     @Column(name = "is_approved")
-    private Boolean isApproved = false; // Αρχικά false, απαιτεί έγκριση διαχειριστή
+    private Boolean isApproved = false; // Αρχικά false απαιτει έγκριση διαχειριστή
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "owner_id") // Το πεδίο που συνδέει με τον πίνακα users
-    private User owner; // Σχέση Many-to-One με τον ιδιοκτήτη (User)
+    private User owner; // Σχέση Many-to-One με τον ιδιοκτήτη
 
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<RentalApplication> applications; // Σχέση One-to-Many με τις αιτήσεις ενοικίασης
+    private List<RentalApplication> applications; // Σχέση One to-Many με τις αιτήσεις ενοικίασης
 
     // Constructors
     public Property() {
@@ -85,7 +90,7 @@ public class Property {
         this.rentAmount = rentAmount;
         this.availabilityDate = availabilityDate;
         this.owner = owner;
-        this.isApproved = false; // Νέα ακίνητα απαιτούν έγκριση
+        this.isApproved = false; // New properties require approval
     }
 
     // Getters and Setters

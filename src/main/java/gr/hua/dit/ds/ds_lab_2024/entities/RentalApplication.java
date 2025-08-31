@@ -15,22 +15,22 @@ public class RentalApplication {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "Η ημερομηνία αίτησης είναι υποχρεωτική")
+    @NotNull(message = "The application date is required")
     @Column(name = "application_date")
     private LocalDate applicationDate;
 
-    @NotNull(message = "Η κατάσταση της αίτησης είναι υποχρεωτική")
+    @NotNull(message = "The application status is required")
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private ApplicationStatus status; // Νέο Enum: ApplicationStatus
+    private ApplicationStatus status;
 
-    @Size(max = 500, message = "Το μήνυμα δεν μπορεί να υπερβαίνει τους 500 χαρακτήρες")
+    @Size(max = 500, message = "The message cannot exceed 500 characters")
     @Column(name = "message", length = 500)
     private String message; // Προαιρετικό μήνυμα από τον ενοικιαστή
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "tenant_id") // Το πεδίο που συνδέει με τον πίνακα users
-    private User tenant; // Σχέση Many-to-One με τον ενοικιαστή (User)
+    private User tenant; // Σχέση Many-to One με τον ενοικιαστή
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "property_id") // Το πεδίο που συνδέει με τον πίνακα properties

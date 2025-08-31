@@ -33,7 +33,7 @@ public class User {
     @Size(max = 120)
     private String password;
 
-    @Column(name = "requested_role") // Σωστή δήλωση του πεδίου
+    @Column(name = "requested_role")
     private String requestedRole;
 
     @ManyToMany(fetch = FetchType.LAZY)

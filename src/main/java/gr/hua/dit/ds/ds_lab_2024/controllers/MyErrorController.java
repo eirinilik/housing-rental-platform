@@ -6,7 +6,7 @@ import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+//      ΧΕΙΡΙΖΕΤΑΙ ΟΛΑ ΤΑ ΑΙΤΗΜΑΤΑ ΣΦΑΛΑΜΑΤΩΝ ΠΟΥ ΔΕΝ ΑΝΤΙΣΤΟΙΧΟΥΝ ΣΕ ΚΑΠΟΙΟ controller
 @Controller
 public class MyErrorController implements ErrorController {
 

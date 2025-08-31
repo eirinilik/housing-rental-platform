@@ -13,8 +13,7 @@ public interface RentalApplicationRepository extends JpaRepository<RentalApplica
 
     // Custom finder methods
     List<RentalApplication> findByProperty(Property property); // Βρίσκει αιτήσεις για ένα συγκεκριμένο ακίνητο
-    List<RentalApplication> findByTenant(User tenant); // Βρίσκει αιτήσεις που υποβλήθηκαν από έναν συγκεκριμένο ενοικιαστή
+    List<RentalApplication> findByTenant(User tenant); // Βρίσκει αιτήσεις που υποβλήθηκαν από έναν συγκεκριμενο ενοικιαστή
 
-    // Μπορείτε να προσθέσετε και άλλες μεθόδους, π.χ.
-    // List<RentalApplication> findByPropertyAndStatus(Property property, ApplicationStatus status);
+
 }
